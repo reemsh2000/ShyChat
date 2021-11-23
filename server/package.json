@@ -18,10 +18,13 @@
     "@typescript-eslint/parser": "^5.4.0",
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.3"
+    "eslint-plugin-import": "^2.25.3",
+    "nodemon": "^2.0.15"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": " NODE_ENV=test jest test/test.js",
+    "start": " NODE_ENV=production node ./src/index.js",
+    "dev": " NODE_ENV=development nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
