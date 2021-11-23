@@ -10,6 +10,7 @@ const login = async (req, res, next) => {
     await loginSchema.validateAsync(req.body);
 
     const { rows } = await checkPhoneQuery(phoneNumber);
+    const { id } = rows[0];
 
     if (!rows.length) {
       return res.status(400).json({ message: 'Invalid phone or password' });
@@ -19,7 +20,7 @@ const login = async (req, res, next) => {
     if (!compared) {
       return res.status(400).json({ message: 'Invalid phone or password' });
     }
-    const token = await signToken(phoneNumber, rows[0].id);
+    const token = await signToken({ id, phoneNumber });
     return res.cookie('token', token).json({ message: 'You are Logged Successfully' });
   } catch (err) {
     if (err.details) {
