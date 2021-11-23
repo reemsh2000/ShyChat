@@ -1,4 +1,4 @@
 const addNewUser = require('./addNewUser');
-const checkPhoneNumber = require('./checkPhoneNumber');
+const checkPhoneQuery = require('./checkPhoneQuery');
 
-module.exports = { addNewUser, checkPhoneNumber };
+module.exports = { addNewUser, checkPhoneQuery };
