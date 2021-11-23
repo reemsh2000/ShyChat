@@ -7,7 +7,6 @@ const checkAuth = async (req, res, next) => {
   }
   const decoded = await verifyToken(token);
   req.userObj = decoded;
-  console.log(decoded);
   next();
 };
 

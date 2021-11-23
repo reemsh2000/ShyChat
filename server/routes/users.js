@@ -10,6 +10,6 @@ router.post('/signup', checkUserExist, signup);
 router.post('/login', login);
 
 router.use(checkAuth);
-router.put('edit-profile', editProfile);
+router.put('/editprofile', editProfile);
 
 module.exports = router;
