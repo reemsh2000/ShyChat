@@ -8,7 +8,6 @@ const login = async (req, res, next) => {
   try {
     const { phoneNumber, password } = req.body;
     await loginSchema.validateAsync(req.body);
-
     const { rows } = await checkPhoneQuery(phoneNumber);
     const { id } = rows[0];
 
