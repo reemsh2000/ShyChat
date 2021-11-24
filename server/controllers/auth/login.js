@@ -20,7 +20,7 @@ const login = async (req, res, next) => {
       return res.status(400).json({ message: 'Invalid phone or password' });
     }
     const token = await signToken({ id, phoneNumber });
-    return res.cookie('token', token).json({ message: 'You are Logged Successfully' });
+    res.cookie('token', token).json({ message: 'You are Logged Successfully' });
   } catch (err) {
     if (err.details) {
       res.status(400).json({
