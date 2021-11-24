@@ -15,6 +15,10 @@ const login = async (req, res, next) => {
       return res.status(400).json({ message: 'Invalid phone or password' });
     }
 
+    if (rows[0].approve === false) {
+      return res.status(400).json({ message: 'Please verify your phone number' });
+    }
+
     const compared = await bcrypt.compare(password, rows[0].password);
     if (!compared) {
       return res.status(400).json({ message: 'Invalid phone or password' });
