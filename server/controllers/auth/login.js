@@ -8,7 +8,6 @@ const login = async (req, res, next) => {
   try {
     const { phoneNumber, password } = req.body;
     await loginSchema.validateAsync(req.body);
-
     const { rows } = await checkPhoneQuery(phoneNumber);
     const { id } = rows[0];
 
@@ -16,12 +15,16 @@ const login = async (req, res, next) => {
       return res.status(400).json({ message: 'Invalid phone or password' });
     }
 
+    if (rows[0].approve === false) {
+      return res.status(400).json({ message: 'Please verify your phone number' });
+    }
+
     const compared = await bcrypt.compare(password, rows[0].password);
     if (!compared) {
       return res.status(400).json({ message: 'Invalid phone or password' });
     }
     const token = await signToken({ id, phoneNumber });
-    return res.cookie('token', token).json({ message: 'You are Logged Successfully' });
+    res.cookie('token', token).json({ message: 'You are Logged Successfully' });
   } catch (err) {
     if (err.details) {
       res.status(400).json({

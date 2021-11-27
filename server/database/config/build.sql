@@ -9,6 +9,7 @@ CREATE TABLE users(
     password TEXT,
     photo TEXT,
     bio TEXT,
+    approve boolean  DEFAULT FALSE,
     status boolean  DEFAULT FALSE
 );
 CREATE TABLE chat(
