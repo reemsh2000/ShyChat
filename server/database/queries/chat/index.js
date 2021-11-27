@@ -1,10 +1,12 @@
-const addNewParticipent = require('./addNewParticipent');
+const addNewParticipant = require('./addNewParticipent');
 const createNewChat = require('./createNewChat');
 const checkExistChat = require('./checkExistChat');
+const addNewMessage = require('./addNewMessage');
 
 module.exports = {
 
-  addNewParticipent,
+  addNewParticipant,
   checkExistChat,
   createNewChat,
+  addNewMessage,
 };
