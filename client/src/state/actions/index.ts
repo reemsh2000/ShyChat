@@ -1,3 +1,4 @@
+
 import { actionTypes } from '../action-types';
 
 interface loginAction {
@@ -8,4 +9,10 @@ interface logoutAction {
     type: actionTypes.LOGOUT
 }
 
-export type Action = loginAction | logoutAction;
+interface userDataAction {
+    type: actionTypes.USERDATA,
+    id: number,
+    phoneNumber: string
+}
+
+export type Action = loginAction | logoutAction | userDataAction ;

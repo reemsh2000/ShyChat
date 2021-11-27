@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import isLogged from './isLoggoed';
+import userInfromation from './userInformation';
+
 
 const reducers = combineReducers({
-    isLogged,
+    isLogged, userInfromation,
 })
 
 export default reducers;
