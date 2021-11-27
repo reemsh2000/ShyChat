@@ -1,9 +1,6 @@
 // import ScrollToBottom from "react-scroll-to-bottom";
-import jwt_decode from "jwt-decode";
 import { useState,useEffect } from "react";
 import React from 'react'
-
-var decoded = jwt_decode(token);
 
 interface ChatProps {
   socket : any,
@@ -15,13 +12,12 @@ export const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState<any[]>([]);
 
-const id=8;
-const phone='+242 380 481 1406';
+const phone='+972598848374';
   const sendMessage = async () => {
-    if (currentMessage !== "") {
+    if (currentMessage.trim() !== "") {
       const messageData = {
         room: room,
-        senderId: id,
+        senderId: 51,
         receiverPhone:phone,
         message: currentMessage,
         time:

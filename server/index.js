@@ -1,5 +1,9 @@
 const { server, app } = require('./app');
 
-server.listen(app.get('port'), () => {
+app.listen(app.get('port'), () => {
   console.log(`server is running http://localhost:${app.get('port')}`);
+});
+
+server.listen(7000, () => {
+  console.log('socket server is running');
 });

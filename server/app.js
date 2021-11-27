@@ -9,7 +9,7 @@ const server = require('./socket');
 const app = express();
 const router = require('./routes');
 
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 6000);
 app.disable('x-powered-by');
 app.use(cors());
 app.use(compression());
