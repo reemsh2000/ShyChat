@@ -4,20 +4,19 @@ import React from 'react'
 
 interface ChatProps {
   socket : any,
-  username :string,
-  room:string 
+  reveier :string,
+  id:number
 }
 
-export const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
+export const Chat: React.FC<ChatProps> = ({ socket, reveier,id }) => {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState<any[]>([]);
 
   const sendMessage = async () => {
     if (currentMessage.trim() !== "") {
       const messageData = {
-        room: room,
-        senderId: 51,
-        receiverPhone:room,
+        senderId: id,
+        receiverPhone:reveier,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
@@ -50,7 +49,6 @@ export const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
             return (
               <div
                 className="message"
-                id={username === messageContent.author ? "you" : "other"}
               >
                 <div>
                   <div className="message-content">
