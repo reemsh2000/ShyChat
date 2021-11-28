@@ -1,5 +1,5 @@
 import axios from "axios";
-import ErrorAlert from "./errorAlert";
+import { handleErrorMessage } from "../state/action-creators";
 
 axios.interceptors.response.use(
   (response) => response.data,
@@ -10,7 +10,7 @@ axios.interceptors.response.use(
       error.response.status < 500;
 
     if (!expectedError) {
-      ErrorAlert();
+      handleErrorMessage(true);
     }
 
     return Promise.reject(error);

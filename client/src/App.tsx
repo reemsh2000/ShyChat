@@ -1,22 +1,21 @@
-import React from 'react';
 import './App.css';
 import ErrorAlert from './service/errorAlert'
 import React, { useEffect } from "react";
-import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "./state";
 import userInfo from "./util/userInfo";
 
 function App() {
+  
   const dispatch = useDispatch();
   const { logIn, logout, getUserData } = bindActionCreators(
     actionCreators,
     dispatch
-  );
-  const isLoggedState = useSelector((state: State) => state.isLogged);
-  useEffect(() => {
-    if (isLoggedState) {
+    );
+    const isLoggedState = useSelector((state: State) => state.isLogged);
+    useEffect(() => {
+      if (isLoggedState) {
       const user = userInfo();
       getUserData(user)
     }
