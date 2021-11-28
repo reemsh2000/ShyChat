@@ -17,18 +17,32 @@ export const logout = (): Function => {
     });
   };
 };
-export const setUserData = (payload:any) => {
+const setUserData = (payload:any) => {
   return {
     type: actionTypes.USERDATA,
     payload,
   }
-
 }
+
 export const getUserData = (user: User): Function => {
   return (dispatch: Dispatch) => {
     dispatch(setUserData({
       id: user.id,
       phoneNumber: user.phoneNumber,
+    }));
+  };
+};
+
+const setErrorState = (payload:any) => {
+  return {
+    type: actionTypes.SHOWERROR,
+    payload,
+  }
+}
+export const handleErrorMessage = (errorState:boolean): Function => {
+  return (dispatch: Dispatch) => {
+    dispatch(setErrorState({
+      errState: errorState,
     }));
   };
 };

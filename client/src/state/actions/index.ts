@@ -15,4 +15,7 @@ interface userDataAction {
     phoneNumber: string
 }
 
-export type Action = loginAction | logoutAction | userDataAction ;
+interface showError {
+    type: actionTypes.SHOWERROR,
+}
+export type Action = loginAction | logoutAction | userDataAction | showError;
