@@ -9,12 +9,11 @@ const login = async (req, res, next) => {
     const { phoneNumber, password } = req.body;
     await loginSchema.validateAsync(req.body);
     const { rows } = await checkPhoneQuery(phoneNumber);
-    const { id } = rows[0];
-
     if (!rows.length) {
       return res.status(400).json({ message: 'Invalid phone or password' });
     }
 
+    const { id } = rows[0];
     if (rows[0].approve === false) {
       return res.status(400).json({ message: 'Please verify your phone number' });
     }
