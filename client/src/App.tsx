@@ -31,7 +31,7 @@ export function App() {
           />
           <input
             type="text"
-            placeholder="Room ID..."
+            placeholder="phone number"
             onChange={(event) => {
               setRoom(event.target.value);
             }}

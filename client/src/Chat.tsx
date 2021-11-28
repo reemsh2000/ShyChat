@@ -12,13 +12,12 @@ export const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState<any[]>([]);
 
-const phone='+972598848374';
   const sendMessage = async () => {
     if (currentMessage.trim() !== "") {
       const messageData = {
         room: room,
         senderId: 51,
-        receiverPhone:phone,
+        receiverPhone:room,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
