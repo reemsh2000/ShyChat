@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+
+
+ import React, { useEffect } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "./state";
 import userInfo from "./util/userInfo";
+import { ChatIntro } from "./chat.intro";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,8 +25,11 @@ function App() {
     <div className="App">
       <button onClick={logIn}>login</button>
       <button onClick={logout}>logout</button>
+      <ChatIntro/>
     </div>
   );
 }
 
-export default App;
+export default App; 
+
+

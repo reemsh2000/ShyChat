@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users,chat,chatParticipent CASCADE;
+DROP TABLE IF EXISTS users,chat,chatparticipant,message CASCADE;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -14,12 +14,20 @@ CREATE TABLE users(
 );
 CREATE TABLE chat(
     id SERIAL PRIMARY KEY,
-    roomId INTEGER
+    name VARCHAR(50)
 );
-CREATE TABLE chatParticipent(
+CREATE TABLE chatparticipant(
     id SERIAL PRIMARY KEY,
     userId INTEGER REFERENCES users(id) ON DELETE CASCADE,
     chatId INTEGER REFERENCES chat(id) ON DELETE CASCADE 
 );
+CREATE TABLE message(
+    id SERIAL PRIMARY KEY,
+    userId INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    chatId INTEGER REFERENCES chat(id) ON DELETE CASCADE ,
+    content TEXT,
+    messageTime VARCHAR(10)
+);
+
 
 COMMIT;
