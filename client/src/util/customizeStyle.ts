@@ -3,14 +3,22 @@ import { createTheme } from "@mui/material/styles";
 export const theme = createTheme({
     palette: {
         primary: {
-            main:"#4csb34"
+            main:"#2DAE95"
         },
         secondary: {
-          main: '#4ceb34',
+          main: '#476779',
         },
+        error: {
+          main: "CF001A",
+        },
+        warning: {
+          main: "EFA651",
+        }
       },
       typography: {
         fontSize: 16,
+        fontFamily: "sans-serif",
+        
         h1: {
           fontSize: '2rem',
           fontWeight: 500,
