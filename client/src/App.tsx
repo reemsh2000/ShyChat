@@ -6,6 +6,8 @@ import { bindActionCreators } from "redux";
 import { actionCreators, State } from "./state";
 import userInfo from "./util/userInfo";
 import { ChatIntro } from "./chat.intro";
+import Cantact from './components/cantact'
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   
@@ -23,10 +25,14 @@ function App() {
   }, [isLoggedState, getUserData]);
   return (
     <div className="App">
+            <CssBaseline >
+
+
       <ErrorAlert ></ErrorAlert>
-      <button onClick={logIn}>login</button>
-      <button onClick={logout}>logout</button>
-      <ChatIntro/>
+      <button onClick={logIn}>login</button> 
+     <button onClick={logout}>logout</button> 
+      <ChatIntro/> 
+            </CssBaseline>
     </div>
   );
 }
