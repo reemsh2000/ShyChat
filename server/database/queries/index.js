@@ -5,6 +5,7 @@ const updateUserProfile = require('./updateUserProfile');
 const ApproveChange = require('./ApproveChange');
 const getIdByPhoneNumber = require('./getUserIdByPhoneNumber');
 const { addNewParticipant, checkExistChat, createNewChat } = require('./chat');
+const searchUsersByPhone = require('./searchUsersByPhone');
 
 module.exports = {
   addNewUser,
@@ -16,4 +17,5 @@ module.exports = {
   addNewParticipant,
   checkExistChat,
   createNewChat,
+  searchUsersByPhone,
 };

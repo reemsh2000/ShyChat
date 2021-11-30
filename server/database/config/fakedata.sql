@@ -50,6 +50,7 @@ INSERT  INTO  users(name,phone,photo,bio) VALUES
 ('Marcela','+49 103 384 1608','https://robohash.org/nonillumqui.png?size=50x50&set=set1','CGI scripts'),
 ('Hoebart','+48 560 337 8846','https://robohash.org/auteminid.png?size=50x50&set=set1','MSBuild');
 
+
 INSERT INTO chat (name) values (''),(''),(''),('');
 INSERT INTO chatparticipant (userId,chatId) values (1,1),(2,1),(3,2),(4,2),(5,3),(6,3),(7,4),(1,3),(1,4);
 
