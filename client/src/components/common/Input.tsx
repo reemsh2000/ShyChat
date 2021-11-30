@@ -3,14 +3,15 @@ import React from "react";
 interface InputProps {
   name: string;
   label: string;
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   type: string;
   styleName?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
   inputStyle?: React.CSSProperties;
   error?: any;
   errorStyle?: React.CSSProperties;
+  disabled?:boolean
 }
 
 export const Input: React.FC<InputProps> = ({

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from "react-redux";
-import { Input } from '../../components/common/input';
+import { Input } from '../../components/common/Input';
 import { State } from "../../state";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import style from './style';
