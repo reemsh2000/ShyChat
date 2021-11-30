@@ -9,4 +9,7 @@ export interface User {
     id: number;
     phoneNumber: string;
     iat: number,
+    name:string,
+    photo:string,
+    bio:string,
   }

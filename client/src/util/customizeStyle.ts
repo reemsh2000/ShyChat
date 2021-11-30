@@ -9,10 +9,10 @@ export const theme = createTheme({
           main: '#476779',
         },
         error: {
-          main: "CF001A",
+          main: "#CF001A",
         },
         warning: {
-          main: "EFA651",
+          main: "#EFA651",
         }
       },
       typography: {

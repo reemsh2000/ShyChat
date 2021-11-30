@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import "./App.css";
@@ -10,6 +10,9 @@ import { actionCreators, State } from "./state";
 import userInfo from "./util/userInfo";
 import { ChatIntro } from "./chat.intro";
 import { theme } from "./util/customizeStyle";
+import { EditProfile } from './pages/profile/editProfile';
+
+
 function App() {
   const dispatch = useDispatch();
   const { logIn, logout, getUserData } = bindActionCreators(
@@ -25,7 +28,8 @@ function App() {
   }, [isLoggedState, getUserData]);
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
+      {!isLoggedState?
+      <div>
         <Button variant="contained" color="success">
           Success
         </Button>
@@ -33,7 +37,10 @@ function App() {
         <button onClick={logIn}>login</button>
         <button onClick={logout}>logout</button>
         <ChatIntro />
-      </ThemeProvider>
+        </div>
+        :
+        <EditProfile />
+}
     </div>
   );
 }
