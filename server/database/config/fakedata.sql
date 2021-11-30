@@ -53,4 +53,5 @@ INSERT  INTO  users(name,phone,photo,bio) VALUES
 
 INSERT INTO chat (name) values (''),(''),(''),('');
 INSERT INTO chatparticipant (userId,chatId) values (1,1),(2,1),(3,2),(4,2),(5,3),(6,3),(7,4),(1,3),(1,4);
+INSERT INTO message (userId,chatId,content) values (1,1,'jiiii'),(2,1,'kkjbjb'),(3,2,'mkn'),(4,2,'nkjbjkb'),(1,1,'jiiii'),(2,1,'kkjbjb'),(1,1,'hii'),(2,1,'kkjbjb'),(4,2,'jiiii'),(3,2,'kkjbjb')
 

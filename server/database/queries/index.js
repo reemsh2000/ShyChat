@@ -4,8 +4,10 @@ const getPhotoById = require('./getUserById');
 const updateUserProfile = require('./updateUserProfile');
 const ApproveChange = require('./ApproveChange');
 const getIdByPhoneNumber = require('./getUserIdByPhoneNumber');
-const { addNewParticipant, checkExistChat, createNewChat } = require('./chat');
 const searchUsersByPhone = require('./searchUsersByPhone');
+const {
+  addNewParticipant, checkExistChat, createNewChat, getUserConversations, getChatMessages,
+} = require('./chat');
 
 module.exports = {
   addNewUser,
@@ -16,6 +18,8 @@ module.exports = {
   getIdByPhoneNumber,
   addNewParticipant,
   checkExistChat,
+  getUserConversations,
   createNewChat,
   searchUsersByPhone,
+  getChatMessages,
 };
