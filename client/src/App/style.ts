@@ -1,11 +1,11 @@
 const style = {
   app: {
-    background: "#2DAE95",
+    backgroundColor:'#F8F9FA',
     width: "100%",
     height: "100vh",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
   },
 };
 export default style;
