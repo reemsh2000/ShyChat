@@ -11,7 +11,7 @@ interface InputProps {
   inputStyle?: React.CSSProperties;
   error?: any;
   errorStyle?: React.CSSProperties;
-  disabled?:boolean
+  disabled?:boolean;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -25,6 +25,7 @@ export const Input: React.FC<InputProps> = ({
   inputStyle,
   error,
   errorStyle,
+  disabled=false
 }) => {
   return (
     <div style={styleName}>
@@ -36,6 +37,7 @@ export const Input: React.FC<InputProps> = ({
         value={value}
         type={type}
         style={inputStyle}
+        disabled={disabled}
       />
       {error && <div style={errorStyle}>{error}</div>}
     </div>
