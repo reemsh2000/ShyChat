@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../state";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import style from "./style";
 import previewFile from "../../util/previewFile";
 import { EditProfileSection } from "./editProfileSection";
@@ -9,10 +8,10 @@ import { Img } from "../../components/common/Img";
 import logo from "../../util/images/logo.png";
 import http from "../../service/httpService";
 export const EditProfile: React.FC = () => {
-  const [bioText, setBioText] = useState("");
-  const [image, setImage] = useState("");
   const userInfromation = useSelector((state: State) => state.userInfromation);
   const { id, name, phoneNumber, photo, bio } = userInfromation;
+  const [bioText, setBioText] = useState("");
+  const [image, setImage] = useState(photo);
   const handleBioChang = (e: any) => {
     setBioText(e.target.value);
   };
@@ -23,11 +22,10 @@ export const EditProfile: React.FC = () => {
   const handleSubmit=async()=>{
    await http.put('/user/editProfile',{
     bioText,
-    image
+    image,
+    id
    })
   }
-
-  console.log(userInfromation);
   return (
     <div style={style.editProfileContainer}>
       <EditProfileSection

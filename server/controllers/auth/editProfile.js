@@ -2,9 +2,8 @@ const { getPhotoById, updateUserProfile } = require('../../database/queries');
 const { uploadToCloudinary } = require('../utilities');
 
 const editProfile = async (req, res) => {
-  const { bioText } = req.body;
+  const { bioText, id } = req.body;
   let { image } = req.body;
-  const { id } = req.userObj;
   try {
     const { rows } = await getPhotoById(id);
     const { photo } = rows[0];
