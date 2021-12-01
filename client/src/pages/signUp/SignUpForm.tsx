@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 import { Input } from "../../components/common/Input";
 import style from "./style";
 import { schema } from "./schema";
+import http from "../../service/httpService";
 
 export const SignUpForm: React.FC = () => {
   const [account, setAccount] = useState({
@@ -36,16 +37,19 @@ export const SignUpForm: React.FC = () => {
     setAccount(updateAccountState);
   };
 
-  const doSubmit = () => {
-    //call server request
-    console.log("submitted");
+  const doSubmit = async () => {
+    try{ 
+      await http.post("/user/signup", account);
+
+    } catch (error) {
+      
+    }
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errorResult = validate(account, schema);
     setErrors(errorResult || {});
     if (errorResult) return;
-
     doSubmit();
   };
 

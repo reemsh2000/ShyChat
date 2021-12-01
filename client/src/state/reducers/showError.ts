@@ -1,10 +1,10 @@
 import { actionTypes } from "../action-types";
-import { Action } from "../actions";
-const initialValue = false;
-const showErr = (state = initialValue, action: Action) => {
+const errorInitialState = false; 
+const showErr = (state = errorInitialState, action: any) => {
+  console.log(action, state)
   switch (action.type) {
     case actionTypes.SHOWERROR:
-      return true;
+      return action.payload;
     default:
       return state;
   }

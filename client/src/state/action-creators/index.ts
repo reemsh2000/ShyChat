@@ -39,10 +39,10 @@ const setErrorState = (payload:any) => {
     payload,
   }
 }
-export const handleErrorMessage = (errorState:boolean): Function => {
+export const handleErrorMessage = (errState:any): Function => {
   return (dispatch: Dispatch) => {
-    dispatch(setErrorState({
-      errState: errorState,
-    }));
+    dispatch(setErrorState(
+      errState,
+    ));
   };
 };

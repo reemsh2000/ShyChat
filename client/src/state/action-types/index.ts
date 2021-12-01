@@ -10,3 +10,7 @@ export interface User {
     phoneNumber: string;
     iat: number,
   }
+
+// export interface Errors {
+//     errState: boolean;
+// } 
