@@ -1,30 +1,26 @@
 import React, { useState } from "react";
 import Joi from "joi-browser";
 import { Input } from "../../components/common/Input";
-import style from "./style";
+import style from "../signUp/style";
 import { schema } from "./schema";
 import http from "../../service/httpService";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreators } from "../../state";
-import { useHistory, Link } from "react-router-dom";
+import { actionCreators, State } from "../../state";
+import { useHistory } from "react-router-dom";
 
-export const SignUpForm: React.FC = () => {
+export const VerifyForm: React.FC = () => {
   const [account, setAccount] = useState({
-    userName: "",
     phoneNumber: "",
-    password: "",
-    confirmPassword: "",
+    code: "",
   });
   const [errors, setErrors] = useState({
-    userName: "",
     phoneNumber: "",
-    password: "",
-    confirmPassword: "",
+    code: "",
   });
   const history = useHistory();
   const dispatch = useDispatch();
-  const { handleErrorMessage } = bindActionCreators(actionCreators, dispatch);
+  const { handleErrorMessage, logIn } = bindActionCreators(actionCreators, dispatch);
 
   const updateErrorState = (arrError: any) => {
     const errorResult = arrError.reduce((acc: any, curr: any) => {
@@ -51,23 +47,20 @@ export const SignUpForm: React.FC = () => {
 
   const doSubmit = async () => {
     try {
-      await http.post("/user/signup", account);
-      
-      history.push("/verfiy");
+      await http.post("/user/verify", account);
+      logIn();
+      history.push("/");
     } catch (error: any) {
+      console.log(error);
       if (
         error.response &&
         error.response.status >= 400 &&
         error.response.status < 500
       ) {
-        if (error.response.data.errorCode === "AS_1002") {
-          setErrors(updateErrorState(error.response.data.details) || {});
-        } else {
-          handleErrorMessage({
-            errState: true,
-            errMessage: "incorrect username or password",
-          });
-        }
+        handleErrorMessage({
+          errState: true,
+          errMessage: "verification failed",
+        });
       } else {
         handleErrorMessage({
           errState: true,
@@ -87,18 +80,6 @@ export const SignUpForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} style={style.FormContainer}>
       <Input
-        name="userName"
-        label="User Name"
-        value={account.userName}
-        onChange={handleChange}
-        type="text"
-        styleName={style.inputContainer}
-        labelStyle={style.labelStyle}
-        inputStyle={style.inputStyle}
-        error={errors.userName}
-        errorStyle={style.errorMessage}
-      />
-      <Input
         name="phoneNumber"
         label="Phone Number"
         value={account.phoneNumber}
@@ -111,34 +92,19 @@ export const SignUpForm: React.FC = () => {
         errorStyle={style.errorMessage}
       />
       <Input
-        name="password"
-        label="Password"
-        value={account.password}
+        name="code"
+        label="Code"
+        value={account.code}
         onChange={handleChange}
-        type="password"
+        type="text"
         styleName={style.inputContainer}
         labelStyle={style.labelStyle}
         inputStyle={style.inputStyle}
-        error={errors.password}
+        error={errors.code}
         errorStyle={style.errorMessage}
       />
-      <Input
-        name="confirmPassword"
-        label="Confirm Password"
-        value={account.confirmPassword}
-        onChange={handleChange}
-        type="password"
-        styleName={style.inputContainer}
-        labelStyle={style.labelStyle}
-        inputStyle={style.inputStyle}
-        error={errors.confirmPassword}
-        errorStyle={style.errorMessage}
-      />
-      <input value="Sign up" type="submit" style={style.submit} />
-      <p>
-        {" "}
-        <Link to="/">go to LOGIN</Link>
-      </p>
+      <input value="Confirm" type="submit" style={style.submit} />
+      <p> go to LOGIN</p>
     </form>
   );
 };
