@@ -1,32 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect} from "react";
+import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators, State } from "../state";
+import { bindActionCreators } from "redux";
 
-interface ErrorAlertProps {
-  errorMessage: string;
-}
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
-export const ErrorAlert: React.FC<ErrorAlertProps> = ({ errorMessage }) => {
-  const [state, setState] = useState({
-    open: true,
-    vertical: "top",
-    horizontal: "center",
-  });
+export default function CustomizedSnackbars() {
+  const state = useSelector((state: State) => state.showErr.errState);
+  const message = useSelector((state: State) => state.showErr.errMessage);
+  useEffect(()=> {
 
-  const { vertical, horizontal, open } = state;
+  }, [state])
+  const dispatch = useDispatch();
+  const { handleErrorMessage } = bindActionCreators(actionCreators, dispatch);
 
-  const handleClose = () => {
-    setState({ ...state, open: false });
+  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    handleErrorMessage({ errState: false, errMessage: "" });
   };
 
   return (
-    <div>
-      <Snackbar
-        autoHideDuration={6000}
-        open={open}
-        onClose={handleClose}
-        message={errorMessage}
-        key={vertical + horizontal}
-      />
-    </div>
+    <Stack>
+      <Snackbar open={state} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          {message}
+        </Alert>
+      </Snackbar>
+    </Stack>
   );
-};
+}

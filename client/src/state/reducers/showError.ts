@@ -1,10 +1,9 @@
 import { actionTypes } from "../action-types";
-const errorInitialState = false; 
+const errorInitialState = {errState:false, errMessage: ''}; 
 const showErr = (state = errorInitialState, action: any) => {
-  console.log(action, state)
   switch (action.type) {
     case actionTypes.SHOWERROR:
-      return action.payload;
+      return {...state, ...action.payload};
     default:
       return state;
   }

@@ -24,6 +24,6 @@ const schema = Joi.object().keys({
       'any.required': ' password is required ',
     }),
   confirmPassword: Joi.ref('password'),
-}).options({ abortEarly: true });
+}).options({ abortEarly: false });
 
 module.exports = schema;

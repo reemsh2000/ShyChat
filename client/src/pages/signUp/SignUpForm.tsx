@@ -4,6 +4,10 @@ import { Input } from "../../components/common/Input";
 import style from "./style";
 import { schema } from "./schema";
 import http from "../../service/httpService";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../../state";
+import { useHistory } from 'react-router-dom';
 
 export const SignUpForm: React.FC = () => {
   const [account, setAccount] = useState({
@@ -18,14 +22,22 @@ export const SignUpForm: React.FC = () => {
     password: "",
     confirmPassword: "",
   });
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { handleErrorMessage } = bindActionCreators(actionCreators, dispatch);
+
+  const updateErrorState = (arrError: any) => {
+    const errorResult = arrError.reduce((acc: any, curr: any) => {
+      acc[curr.path] = curr.message;
+      return acc;
+    }, {});
+    return errorResult;
+  };
 
   const validate = (values: any, schema: any) => {
     const { error } = Joi.validate(values, schema);
     if (!error) return null;
-    const { path, message } = error.details[0];
-    const updateErrorsState: any = {};
-    updateErrorsState[path] = message;
-    return updateErrorsState;
+    return updateErrorState(error.details);
   };
 
   const handleChange = ({
@@ -38,12 +50,29 @@ export const SignUpForm: React.FC = () => {
   };
 
   const doSubmit = async () => {
-    try{ 
-      await http.post("/user/signup", account);
-
-    } catch (error) {
+    try {
+      const success = await http.post("/user/signup", account);
+      console.log(success.status)
+      history.push('/verfiy')
       
+    } catch (error: any) {
+      if (error.response && error.response.status >= 400 && error.response.status < 500) {
+        if (error.response.data.errorCode === "AS_1002") {
+          setErrors(updateErrorState(error.response.data.details) || {});
+        } else {
+          handleErrorMessage({
+            errState: true,
+            errMessage: "incorrect username or password",
+          });
+        }
+      } else {
+        handleErrorMessage({
+          errState: true,
+          errMessage: "something went wrong",
+        });
+      }
     }
+
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

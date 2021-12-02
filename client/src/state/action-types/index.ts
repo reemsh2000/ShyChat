@@ -11,6 +11,7 @@ export interface User {
     iat: number,
   }
 
-// export interface Errors {
-//     errState: boolean;
-// } 
+export interface Errors {
+    errState: boolean;
+    errMessage: string;
+} 
