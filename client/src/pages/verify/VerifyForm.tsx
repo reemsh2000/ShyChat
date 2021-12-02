@@ -1,26 +1,22 @@
 import React, { useState } from "react";
 import Joi from "joi-browser";
 import { Input } from "../../components/common/Input";
-import style from "./style";
-import { schema } from "./schema";
+import style from "../signUp/style";
+// import { schema } from "./schema";
 import http from "../../service/httpService";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
-export const SignUpForm: React.FC = () => {
+export const VerifyForm: React.FC = () => {
   const [account, setAccount] = useState({
-    userName: "",
     phoneNumber: "",
-    password: "",
-    confirmPassword: "",
+    code: "",
   });
   const [errors, setErrors] = useState({
-    userName: "",
     phoneNumber: "",
-    password: "",
-    confirmPassword: "",
+    code: "",
   });
   const history = useHistory();
   const dispatch = useDispatch();
@@ -34,11 +30,11 @@ export const SignUpForm: React.FC = () => {
     return errorResult;
   };
 
-  const validate = (values: any, schema: any) => {
-    const { error } = Joi.validate(values, schema);
-    if (!error) return null;
-    return updateErrorState(error.details);
-  };
+//   const validate = (values: any, schema: any) => {
+//     const { error } = Joi.validate(values, schema);
+//     if (!error) return null;
+//     return updateErrorState(error.details);
+//   };
 
   const handleChange = ({
     currentTarget: input,
@@ -51,23 +47,20 @@ export const SignUpForm: React.FC = () => {
 
   const doSubmit = async () => {
     try {
-      const success = await http.post("/user/signup", account);
-      console.log(success.status);
-      history.push("/verfiy");
+      const success = await http.post("/user/verify", account);
+      console.log(success.status)
+      history.push('/home')
+      
     } catch (error: any) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status < 500
-      ) {
-        if (error.response.data.errorCode === "AS_1002") {
-          setErrors(updateErrorState(error.response.data.details) || {});
-        } else {
-          handleErrorMessage({
-            errState: true,
-            errMessage: "incorrect username or password",
-          });
-        }
+      if (error.response && error.response.status >= 400 && error.response.status < 500) {
+        // if (error.response.data.errorCode === "AS_1002") {
+        //   setErrors(updateErrorState(error.response.data.details) || {});
+        // } else {
+        //   handleErrorMessage({
+        //     errState: true,
+        //     errMessage: "incorrect username or password",
+        //   });
+        // }
       } else {
         handleErrorMessage({
           errState: true,
@@ -75,29 +68,18 @@ export const SignUpForm: React.FC = () => {
         });
       }
     }
+
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errorResult = validate(account, schema);
-    setErrors(errorResult || {});
-    if (errorResult) return;
+    // const errorResult = validate(account, schema);
+    // setErrors(errorResult || {});
+    // if (errorResult) return;
     doSubmit();
   };
 
   return (
     <form onSubmit={handleSubmit} style={style.FormContainer}>
-      <Input
-        name="userName"
-        label="User Name"
-        value={account.userName}
-        onChange={handleChange}
-        type="text"
-        styleName={style.inputContainer}
-        labelStyle={style.labelStyle}
-        inputStyle={style.inputStyle}
-        error={errors.userName}
-        errorStyle={style.errorMessage}
-      />
       <Input
         name="phoneNumber"
         label="Phone Number"
@@ -111,34 +93,19 @@ export const SignUpForm: React.FC = () => {
         errorStyle={style.errorMessage}
       />
       <Input
-        name="password"
-        label="Password"
-        value={account.password}
+        name="phoneNumber"
+        label="Phone Number"
+        value={account.code}
         onChange={handleChange}
-        type="password"
+        type="text"
         styleName={style.inputContainer}
         labelStyle={style.labelStyle}
         inputStyle={style.inputStyle}
-        error={errors.password}
-        errorStyle={style.errorMessage}
-      />
-      <Input
-        name="confirmPassword"
-        label="Confirm Password"
-        value={account.confirmPassword}
-        onChange={handleChange}
-        type="password"
-        styleName={style.inputContainer}
-        labelStyle={style.labelStyle}
-        inputStyle={style.inputStyle}
-        error={errors.confirmPassword}
+        error={errors.code}
         errorStyle={style.errorMessage}
       />
       <input value="Sign up" type="submit" style={style.submit} />
-      <p>
-        {" "}
-        <Link to="/">go to LOGIN</Link>
-      </p>
+      <p> go to LOGIN</p>
     </form>
   );
 };
