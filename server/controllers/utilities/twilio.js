@@ -13,10 +13,9 @@ const sendSMS = async (req, res, next) => {
       .verifications.create({ to: `${phoneNumber}`, channel: 'sms' });
     if (verification.status === 'pending') {
       res
-        .status(307)
+        .status(201)
         .json({
           message: 'message send and your account need verfication code',
-          phoneNumber,
         });
     } else {
       res.status(400).json({ message: 'Error sending verification code' });
