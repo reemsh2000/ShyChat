@@ -51,8 +51,8 @@ export const SignUpForm: React.FC = () => {
 
   const doSubmit = async () => {
     try {
-      const success = await http.post("/user/signup", account);
-      console.log(success.status);
+      await http.post("/user/signup", account);
+      
       history.push("/verfiy");
     } catch (error: any) {
       if (

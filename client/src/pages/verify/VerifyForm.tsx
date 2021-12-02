@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Joi from "joi-browser";
 import { Input } from "../../components/common/Input";
 import style from "../signUp/style";
-// import { schema } from "./schema";
+import { schema } from "./schema";
 import http from "../../service/httpService";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreators } from "../../state";
-import { useHistory } from 'react-router-dom';
+import { actionCreators, State } from "../../state";
+import { useHistory } from "react-router-dom";
 
 export const VerifyForm: React.FC = () => {
   const [account, setAccount] = useState({
@@ -20,7 +20,7 @@ export const VerifyForm: React.FC = () => {
   });
   const history = useHistory();
   const dispatch = useDispatch();
-  const { handleErrorMessage } = bindActionCreators(actionCreators, dispatch);
+  const { handleErrorMessage, logIn } = bindActionCreators(actionCreators, dispatch);
 
   const updateErrorState = (arrError: any) => {
     const errorResult = arrError.reduce((acc: any, curr: any) => {
@@ -30,11 +30,11 @@ export const VerifyForm: React.FC = () => {
     return errorResult;
   };
 
-//   const validate = (values: any, schema: any) => {
-//     const { error } = Joi.validate(values, schema);
-//     if (!error) return null;
-//     return updateErrorState(error.details);
-//   };
+  const validate = (values: any, schema: any) => {
+    const { error } = Joi.validate(values, schema);
+    if (!error) return null;
+    return updateErrorState(error.details);
+  };
 
   const handleChange = ({
     currentTarget: input,
@@ -47,20 +47,20 @@ export const VerifyForm: React.FC = () => {
 
   const doSubmit = async () => {
     try {
-      const success = await http.post("/user/verify", account);
-      console.log(success.status)
-      history.push('/home')
-      
+      await http.post("/user/verify", account);
+      logIn();
+      history.push("/");
     } catch (error: any) {
-      if (error.response && error.response.status >= 400 && error.response.status < 500) {
-        // if (error.response.data.errorCode === "AS_1002") {
-        //   setErrors(updateErrorState(error.response.data.details) || {});
-        // } else {
-        //   handleErrorMessage({
-        //     errState: true,
-        //     errMessage: "incorrect username or password",
-        //   });
-        // }
+      console.log(error);
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status < 500
+      ) {
+        handleErrorMessage({
+          errState: true,
+          errMessage: "verification failed",
+        });
       } else {
         handleErrorMessage({
           errState: true,
@@ -68,13 +68,12 @@ export const VerifyForm: React.FC = () => {
         });
       }
     }
-
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const errorResult = validate(account, schema);
-    // setErrors(errorResult || {});
-    // if (errorResult) return;
+    const errorResult = validate(account, schema);
+    setErrors(errorResult || {});
+    if (errorResult) return;
     doSubmit();
   };
 
@@ -93,8 +92,8 @@ export const VerifyForm: React.FC = () => {
         errorStyle={style.errorMessage}
       />
       <Input
-        name="phoneNumber"
-        label="Phone Number"
+        name="code"
+        label="Code"
         value={account.code}
         onChange={handleChange}
         type="text"
@@ -104,7 +103,7 @@ export const VerifyForm: React.FC = () => {
         error={errors.code}
         errorStyle={style.errorMessage}
       />
-      <input value="Sign up" type="submit" style={style.submit} />
+      <input value="Confirm" type="submit" style={style.submit} />
       <p> go to LOGIN</p>
     </form>
   );
