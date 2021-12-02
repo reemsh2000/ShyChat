@@ -34,8 +34,12 @@ const verifySMS = async (req, res, next) => {
     if (verification.status === 'approved') {
       await ApproveChange(phoneNumber);
       const { rows } = await getIdByPhoneNumber(phoneNumber);
-      const { id } = rows[0];
-      const token = await signToken({ id, phoneNumber });
+      const {
+        id, photo, bio, name,
+      } = rows[0];
+      const token = await signToken({
+        id, phoneNumber, photo, bio, name,
+      });
       res.cookie('token', token).json({
         message: 'You are Logged Successfully and Verification successful',
       });

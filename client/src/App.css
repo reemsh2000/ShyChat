@@ -1,6 +1,10 @@
 .App {
   width: 100vw;
+<<<<<<< HEAD
+  /* height: 100vh; */
+=======
   height: 100vh;
+>>>>>>> b946cc95a017fb95545d3a508b1afdeed1479db9
   background: #fff;
   color: #212121;
   font-family: "Open Sans", sans-serif;

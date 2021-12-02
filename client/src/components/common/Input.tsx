@@ -3,14 +3,15 @@ import React from "react";
 interface InputProps {
   name: string;
   label: string;
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   type: string;
   styleName?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
   inputStyle?: React.CSSProperties;
   error?: any;
   errorStyle?: React.CSSProperties;
+  disabled?:boolean;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -24,6 +25,7 @@ export const Input: React.FC<InputProps> = ({
   inputStyle,
   error,
   errorStyle,
+  disabled=false
 }) => {
   return (
     <div style={styleName}>
@@ -35,6 +37,7 @@ export const Input: React.FC<InputProps> = ({
         value={value}
         type={type}
         style={inputStyle}
+        disabled={disabled}
       />
       {error && <div style={errorStyle}>{error}</div>}
     </div>
