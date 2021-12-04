@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Joi from "joi-browser";
 import { Input } from "../../components/common/Input";
-import style from "./style";
+import style from "../signUp/style";
 import { schema } from "./schema";
 
 export const LoginForm: React.FC = () => {

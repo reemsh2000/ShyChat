@@ -60,5 +60,13 @@ const style = {
     fontSize: "1.2rem",
     marginBottom: "-2rem",
   },
+  page: {
+    backgroundColor: "rgb(45, 174, 149)",
+    width: "100%",
+    height: "100vh",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 };
 export default style;

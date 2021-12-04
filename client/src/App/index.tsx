@@ -11,9 +11,9 @@ import { theme } from '../util/customizeStyle';
 import style from './style';
 import { SignUp } from '../pages/signUp';
 import CustomizedSnackbars from '../service/ErrorAlert';
-import Login from './Login';
+import Login from '../pages/login';
 import Verify from '../pages/verify';
-import Home from './Home';
+import Home from '../pages/home';
 import ProtectedRoute from './ProtectedRoute';
 
 const App = () => {
