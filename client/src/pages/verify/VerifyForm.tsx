@@ -7,7 +7,7 @@ import http from "../../service/httpService";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "../../state";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 
 export const VerifyForm: React.FC = () => {
   const [account, setAccount] = useState({
@@ -104,7 +104,7 @@ export const VerifyForm: React.FC = () => {
         errorStyle={style.errorMessage}
       />
       <input value="Confirm" type="submit" style={style.submit} />
-      <p> go to LOGIN</p>
+      <p> <Link to="/">go to LOGIN</Link></p>
     </form>
   );
 };
