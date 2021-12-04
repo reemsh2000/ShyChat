@@ -6,9 +6,13 @@ import { schema } from "./schema";
 import { useHistory } from "react-router";
 import { handleErrorMessage } from "../../state/action-creators";
 import http from "../../service/httpService";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators, State } from "../../state";
 
 export const LoginForm: React.FC = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [account, setAccount] = useState({
     phoneNumber: "",
     password: "",
@@ -17,7 +21,7 @@ export const LoginForm: React.FC = () => {
     phoneNumber: "",
     password: "",
   });
-
+  const { handleErrorMessage, logIn } = bindActionCreators(actionCreators, dispatch);
   const validate = (values: any, schema: any) => {
     const { error } = Joi.validate(values, schema);
     if (!error) return null;
@@ -45,7 +49,7 @@ export const LoginForm: React.FC = () => {
   const doSubmit = async () => {
     try {
       await http.post("/user/login", account);
-      
+      logIn();
       history.push("/");
     } catch (error: any) {
       if (

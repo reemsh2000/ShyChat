@@ -52,7 +52,6 @@ export const SignUpForm: React.FC = () => {
   const doSubmit = async () => {
     try {
       await http.post("/user/signup", account);
-      
       history.push("/verfiy");
     } catch (error: any) {
       if (
@@ -136,7 +135,6 @@ export const SignUpForm: React.FC = () => {
       />
       <input value="Sign up" type="submit" style={style.submit} />
       <p>
-        {" "}
         <Link to="/">go to LOGIN</Link>
       </p>
     </form>

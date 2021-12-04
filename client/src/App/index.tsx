@@ -15,6 +15,7 @@ import Login from '../pages/login';
 import Verify from '../pages/verify';
 import Home from '../pages/home';
 import ProtectedRoute from './ProtectedRoute';
+import { EditProfile } from '../pages/profile';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,11 +38,12 @@ const App = () => {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/verfiy" component={Verify} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/" component={Home} />
-            <ProtectedRoute isLogged={isLoggedState}>
+            <ProtectedRoute isLogged={isLoggedState} path="/">
               <Home />
             </ProtectedRoute>
-            {/* <Route exact path="/editprofile" component={} /> */}
+            <ProtectedRoute isLogged={isLoggedState} path="/editprofile">
+              <EditProfile />
+            </ProtectedRoute>
             {/* <Route path="/notfound" component={Error} /> */}
             {/* <Redirect to="/Not-Found" /> */}
           </Switch>
