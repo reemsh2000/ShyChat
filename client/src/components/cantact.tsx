@@ -23,18 +23,18 @@ const useStyles = makeStyles({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly'
-  
+    justifyContent: 'space-evenly',
+
   },
   BoxContainer: {
     display: 'flex',
-  }
+  },
 });
 
-const Cantact:React.FC<Props> = ({name,imageLink,lastMessage}) => {
+var Cantact:React.FC<Props> = ({ name, imageLink, lastMessage }) => {
   const classes = useStyles();
   return (
-      <Box
+    <Box
       sx={{
         width: '100%',
         height: '7rem',
@@ -46,23 +46,23 @@ const Cantact:React.FC<Props> = ({name,imageLink,lastMessage}) => {
       }}
     >
       <div className={classes.imageContainer}>
-      <img
-        src={imageLink}
-        alt={'ass'}
-        loading="lazy"
-        className={classes.image}
+        <img
+          src={imageLink}
+          alt="ass"
+          loading="lazy"
+          className={classes.image}
         />
-        </div>
-        <div className={classes.textContainer}>
+      </div>
+      <div className={classes.textContainer}>
         <h3>
           {name}
         </h3>
         <p>
           {lastMessage}
         </p>
-        </div>
-        </Box>
+      </div>
+    </Box>
 
   );
 }
-export default Cantact; 
+export default Cantact;
