@@ -34,9 +34,10 @@ const App = () => {
       <div style={style.app}>
         <Router>
           <Switch>
-            <Route path="/signup" component={SignUp} />
-            <Route path="/verfiy" component={Verify} />
-            <Route path="/login" component={Login} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/verfiy" component={Verify} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={Home} />
             <ProtectedRoute isLogged={isLoggedState}>
               <Home />
             </ProtectedRoute>
