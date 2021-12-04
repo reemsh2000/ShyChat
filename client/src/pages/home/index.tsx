@@ -1,7 +1,9 @@
 import React from "react";
-import Cantact from '../../components/cantact';
-const Home = () => {
-  return <div>HIIIIIIIIIIIIIII</div>;
-};
+import { ContactsSection } from "./ContactsSection";
 
+const Home = () => {
+  return ( <div>
+    <ContactsSection/>
+  </div>
+  )}
 export default Home;
