@@ -6,11 +6,13 @@ import style from "./style";
 
 export const SignUp: React.FC = () => {
   return (
+    <div style={style.page}>
     <div style={style.signUpContainer}>
       <div style={style.imageContainer}>
         <Img src={signup} alt="image-chat" styleName={style.image} />
       </div>
         <SignUpForm />
+    </div>
     </div>
   );
 };
