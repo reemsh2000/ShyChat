@@ -4,7 +4,7 @@ import { State } from "../../state";
 import style from "./style";
 import previewFile from "../../util/previewFile";
 import { EditProfileSection } from "./editProfileSection";
-import { Img } from "../../components/common/Img";
+import Img from "../../components/common/Img";
 import logo from "../../util/images/logo.png";
 import http from "../../service/httpService";
 export const EditProfile: React.FC = () => {

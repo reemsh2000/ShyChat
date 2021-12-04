@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ImgProps {
   src: string;
@@ -6,6 +6,12 @@ interface ImgProps {
   styleName?: React.CSSProperties;
 }
 
-export const Img: React.FC<ImgProps> = ({ src, alt, styleName }) => {
-  return <img src={src} alt={alt} style={styleName} />;
-};
+const Img: React.FC<ImgProps> = ({ src, alt, styleName }) => (
+  <img
+    src={src}
+    alt={alt}
+    style={styleName}
+  />
+);
+
+export default Img;

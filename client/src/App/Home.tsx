@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-export const Home: React.FC = () => {
-        return (
-            <div>
-                hiiiiiiiiii
-            </div>
-        );
-}
+const Home: React.FC = () => (
+  <div>
+    hiiiiiiiiii
+  </div>
+);
+
+export default Home;

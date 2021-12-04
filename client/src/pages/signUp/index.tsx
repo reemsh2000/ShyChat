@@ -1,5 +1,5 @@
 import React from "react";
-import { Img } from "../../components/common/Img";
+import Img from "../../components/common/Img";
 import { SignUpForm } from "./SignUpForm";
 import signup from "../../util/images/signup.jpg";
 import style from "./style";
