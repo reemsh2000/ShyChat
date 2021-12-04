@@ -3,8 +3,12 @@ import Joi from "joi-browser";
 import { Input } from "../../components/common/Input";
 import style from "../signUp/style";
 import { schema } from "./schema";
+import { useHistory } from "react-router";
+import { handleErrorMessage } from "../../state/action-creators";
+import http from "../../service/httpService";
 
 export const LoginForm: React.FC = () => {
+  const history = useHistory();
   const [account, setAccount] = useState({
     phoneNumber: "",
     password: "",
@@ -31,23 +35,50 @@ export const LoginForm: React.FC = () => {
     updateAccountState[input.name] = input.value;
     setAccount(updateAccountState);
   };
-
-  const doSubmit = () => {
-    //call server request
-    console.log("submitted");
+  const updateErrorState = (arrError: any) => {
+    const errorResult = arrError.reduce((acc: any, curr: any) => {
+      acc[curr.path] = curr.message;
+      return acc;
+    }, {});
+    return errorResult;
+  };
+  const doSubmit = async () => {
+    try {
+      await http.post("/user/login", account);
+      
+      history.push("/");
+    } catch (error: any) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status < 500
+      ) {
+        if (error.response.data.errorCode === "AS_1002") {
+          setErrors(updateErrorState(error.response.data.details) || {});
+        } else {
+          handleErrorMessage({
+            errState: true,
+            errMessage: "incorrect username or password",
+          });
+        }
+      } else {
+        handleErrorMessage({
+          errState: true,
+          errMessage: "something went wrong",
+        });
+      }
+    }
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errorResult = validate(account, schema);
     setErrors(errorResult || {});
     if (errorResult) return;
-
     doSubmit();
   };
 
   return (
     <form onSubmit={handleSubmit} style={style.FormContainer}>
-
       <Input
         name="phoneNumber"
         label="Phone Number"
