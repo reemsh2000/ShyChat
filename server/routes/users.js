@@ -5,6 +5,7 @@ const {
   signup, login, logout, editProfile,
 } = require('../controllers/auth');
 const { searchUsersByPhonehandler } = require('../controllers/user');
+const getContacts = require('../controllers/auth/getContacts');
 
 router.get('/logout', logout);
 
@@ -13,6 +14,7 @@ router.post('/signup', checkUserExist, signup, sendSMS);
 router.post('/verify', verifySMS);
 router.get('/search/:phone', searchUsersByPhonehandler);
 router.use(checkAuth);
+router.get('/contacts', getContacts);
 router.put('/editprofile', editProfile);
 
 module.exports = router;
