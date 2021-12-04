@@ -49,7 +49,6 @@ export const LoginForm: React.FC = () => {
   const doSubmit = async () => {
     try {
       await http.post("/user/login", account);
-      console.log("submiteeed");
       logIn();
       history.push("/");
     } catch (error: any) {
