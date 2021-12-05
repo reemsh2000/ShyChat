@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 interface Props {
@@ -9,9 +10,10 @@ interface Props {
 }
 const useStyles = makeStyles({
   imageContainer: {
-    width: "8rem",
-    height: "100%",
+    width: "20%",
+    height: "20%",
     borderRadius: "50%",
+    marginRight:'15px'
   },
   image: {
     backgroundColor: "red",
@@ -21,7 +23,6 @@ const useStyles = makeStyles({
   },
   textContainer: {
     width: "100%",
-    height: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-evenly",
@@ -29,24 +30,33 @@ const useStyles = makeStyles({
   BoxContainer: {
     display: "flex",
   },
+  contactName:{
+    margin:'0',
+    padding:'0'
+  },
+  chatLink:{
+    textDecoration:'none',
+    color:'#000',
+    width:'100%'
+  }
 });
 
 const Cantact: React.FC<Props> = ({ name, imageLink, phoneNumber, userId }) => {
   const classes = useStyles();
-  return (
-    <div>
+  return (<Link to='/chat' className={classes.chatLink}>
       <Box
         sx={{
           width: "100%",
-          height: "6rem",
           backgroundColor: "#fff",
           "&:hover": {
             backgroundColor: "#3E9D8A",
             opacity: "0.9",
           },
           display: "flex",
-          justifyContent: "space-evenly",
           padding: "10px",
+          alignItems: 'center',
+          border:'2px solid #f6f6f6',
+          boxSizing:'border-box'
         }}
       >
         <div className={classes.imageContainer}>
@@ -58,11 +68,11 @@ const Cantact: React.FC<Props> = ({ name, imageLink, phoneNumber, userId }) => {
           />
         </div>
         <div className={classes.textContainer}>
-          <h3>{name}</h3>
+          <h3 className={classes.contactName}>{name}</h3>
           <p>{phoneNumber}</p>
         </div>
       </Box>
-    </div>
+    </Link>
   );
 };
 export default Cantact;
