@@ -3,16 +3,15 @@ import Joi from "joi-browser";
 import { Input } from "../../components/common/Input";
 import style from "../signUp/style";
 import { schema } from "./schema";
-import { useHistory } from "react-router";
 import { handleErrorMessage } from "../../state/action-creators";
 import http from "../../service/httpService";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "../../state";
+import { useHistory, Link } from "react-router-dom";
 
 export const LoginForm: React.FC = () => {
-  const history = useHistory();
-  const dispatch = useDispatch();
+  localStorage.setItem('loginStatus', '');
   const [account, setAccount] = useState({
     phoneNumber: "",
     password: "",
@@ -21,14 +20,22 @@ export const LoginForm: React.FC = () => {
     phoneNumber: "",
     password: "",
   });
+  const history = useHistory();
+  const dispatch = useDispatch();
   const { handleErrorMessage, logIn } = bindActionCreators(actionCreators, dispatch);
+
+  const updateErrorState = (arrError: any) => {
+    const errorResult = arrError.reduce((acc: any, curr: any) => {
+      acc[curr.path] = curr.message;
+      return acc;
+    }, {});
+    return errorResult;
+  };
+
   const validate = (values: any, schema: any) => {
     const { error } = Joi.validate(values, schema);
     if (!error) return null;
-    const { path, message } = error.details[0];
-    const updateErrorsState: any = {};
-    updateErrorsState[path] = message;
-    return updateErrorsState;
+    return updateErrorState(error.details);
   };
 
   const handleChange = ({
@@ -39,32 +46,24 @@ export const LoginForm: React.FC = () => {
     updateAccountState[input.name] = input.value;
     setAccount(updateAccountState);
   };
-  const updateErrorState = (arrError: any) => {
-    const errorResult = arrError.reduce((acc: any, curr: any) => {
-      acc[curr.path] = curr.message;
-      return acc;
-    }, {});
-    return errorResult;
-  };
+
   const doSubmit = async () => {
     try {
       await http.post("/user/login", account);
       logIn();
+      localStorage.setItem('loginStatus', 'true');
       history.push("/");
     } catch (error: any) {
+      console.log(error);
       if (
         error.response &&
         error.response.status >= 400 &&
         error.response.status < 500
       ) {
-        if (error.response.data.errorCode === "AS_1002") {
-          setErrors(updateErrorState(error.response.data.details) || {});
-        } else {
-          handleErrorMessage({
-            errState: true,
-            errMessage: "incorrect username or password",
-          });
-        }
+        handleErrorMessage({
+          errState: true,
+          errMessage: "verification failed",
+        });
       } else {
         handleErrorMessage({
           errState: true,
@@ -108,7 +107,9 @@ export const LoginForm: React.FC = () => {
         errorStyle={style.errorMessage}
       />
       <input value="Login" type="submit" style={style.submit} />
-      <p> go to LOGIN</p>
+      <p> 
+      <Link to="/signup">Go To SIgn UP</Link>
+      </p>
     </form>
   );
 };
