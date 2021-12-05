@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     width: "20%",
     height: "20%",
     borderRadius: "50%",
-    marginRight:'15px'
+    marginRight: "15px",
   },
   image: {
     backgroundColor: "red",
@@ -30,20 +30,20 @@ const useStyles = makeStyles({
   BoxContainer: {
     display: "flex",
   },
-  contactName:{
-    margin:'0',
-    padding:'0'
+  contactName: {
+    margin: "0",
+    padding: "0",
   },
-  chatLink:{
-    textDecoration:'none',
-    color:'#000',
-    width:'100%'
+  contactsSection:{
+    width:'100%',
   }
 });
 
 const Cantact: React.FC<Props> = ({ name, imageLink, phoneNumber, userId }) => {
   const classes = useStyles();
-  return (<Link to='/chat' className={classes.chatLink}>
+  const getChat = (id: number) => {};
+  return (
+    <div onClick={() => getChat(userId)} className={classes.contactsSection}>
       <Box
         sx={{
           width: "100%",
@@ -54,9 +54,9 @@ const Cantact: React.FC<Props> = ({ name, imageLink, phoneNumber, userId }) => {
           },
           display: "flex",
           padding: "10px",
-          alignItems: 'center',
-          border:'2px solid #f6f6f6',
-          boxSizing:'border-box'
+          alignItems: "center",
+          border: "2px solid #f6f6f6",
+          boxSizing: "border-box",
         }}
       >
         <div className={classes.imageContainer}>
@@ -72,7 +72,7 @@ const Cantact: React.FC<Props> = ({ name, imageLink, phoneNumber, userId }) => {
           <p>{phoneNumber}</p>
         </div>
       </Box>
-    </Link>
+    </div>
   );
 };
 export default Cantact;
