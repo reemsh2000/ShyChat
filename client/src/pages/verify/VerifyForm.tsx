@@ -10,6 +10,7 @@ import { actionCreators, State } from "../../state";
 import { useHistory,Link } from "react-router-dom";
 
 export const VerifyForm: React.FC = () => {
+  localStorage.setItem('loginStatus', '');
   const [account, setAccount] = useState({
     phoneNumber: "",
     code: "",
@@ -49,6 +50,7 @@ export const VerifyForm: React.FC = () => {
     try {
       await http.post("/user/verify", account);
       logIn();
+      localStorage.setItem('loginStatus', 'true');
       history.push("/");
     } catch (error: any) {
       console.log(error);

@@ -11,6 +11,7 @@ import { actionCreators, State } from "../../state";
 import { useHistory, Link } from "react-router-dom";
 
 export const LoginForm: React.FC = () => {
+  localStorage.setItem('loginStatus', '');
   const [account, setAccount] = useState({
     phoneNumber: "",
     password: "",
@@ -50,6 +51,7 @@ export const LoginForm: React.FC = () => {
     try {
       await http.post("/user/login", account);
       logIn();
+      localStorage.setItem('loginStatus', 'true');
       history.push("/");
     } catch (error: any) {
       console.log(error);
@@ -106,7 +108,7 @@ export const LoginForm: React.FC = () => {
       />
       <input value="Login" type="submit" style={style.submit} />
       <p> 
-      <Link to="/">go to LOGIN</Link>
+      <Link to="/signup">Go To SIgn UP</Link>
       </p>
     </form>
   );

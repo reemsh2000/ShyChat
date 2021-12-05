@@ -1,6 +1,7 @@
 import { actionTypes } from "../action-types";
 import { Action } from "../actions";
-const initialValue = false;
+const initialValue =localStorage.getItem('loginStatus');
+
 const isLogged = (state = initialValue, action: Action) => {
   switch (action.type) {
     case actionTypes.LOGIN:
