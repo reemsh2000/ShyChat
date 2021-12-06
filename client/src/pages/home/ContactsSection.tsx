@@ -1,21 +1,29 @@
 import React from "react";
 import Cantact from "../../components/cantact";
 import style from "./style";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators, State } from "../../state";
 
 interface ContactsSection {
   contacts: any[],
+  currentChatId?: number,
+
 }
 
- const ContactsSection: React.FC<ContactsSection> = ({contacts}) => {
+ const ContactsSection: React.FC<ContactsSection> = ({contacts, currentChatId}) => {
+  const dispatch = useDispatch();
+  const { handleCurrentChat } = bindActionCreators(actionCreators, dispatch);
   return (
     <div style={style.contactsSection}>
       {contacts.length ? (
-        contacts.map((item: any) => <Cantact
+        contacts.map((item: any) => <Cantact    
+            setId={() => handleCurrentChat(item.id)}
             key={item.id}
             name={item.name}
             imageLink={item.photo}
             phoneNumber={item.phoneNumber}
-            userId={item.id}
+            current = {item.id === currentChatId}
           />
         )
       ) : (
