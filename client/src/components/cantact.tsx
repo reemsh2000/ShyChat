@@ -10,16 +10,16 @@ interface Props {
 }
 const useStyles = makeStyles({
   imageContainer: {
-    width: "20%",
+    width: "18%",
     height: "auto",
   },
   image: {
-    width: "90%",
-    height: "4rem",
+    width: "88%",
+    height: "3.8rem",
     borderRadius: "50%",
   },
   textContainer: {
-    width: "75%",
+    width: "81%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-evenly",
@@ -30,6 +30,7 @@ const useStyles = makeStyles({
   },
   contactName: {
     paddingBottom:'0.5rem',
+    color: '#009688'
   },
   contactsSection:{
     width:'100%',
