@@ -11,28 +11,25 @@ interface Props {
 const useStyles = makeStyles({
   imageContainer: {
     width: "20%",
-    height: "20%",
-    borderRadius: "50%",
-    marginRight: "15px",
+    height: "auto",
   },
   image: {
-    backgroundColor: "red",
     width: "90%",
-    height: "90%",
+    height: "4rem",
     borderRadius: "50%",
   },
   textContainer: {
-    width: "100%",
+    width: "75%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-evenly",
+    padding: '0.25rem'
   },
   BoxContainer: {
     display: "flex",
   },
   contactName: {
-    margin: "0",
-    padding: "0",
+    paddingBottom:'0.5rem',
   },
   contactsSection:{
     width:'100%',
@@ -53,8 +50,10 @@ const Cantact: React.FC<Props> = ({ name, imageLink, phoneNumber, userId }) => {
             opacity: "0.9",
           },
           display: "flex",
-          padding: "10px",
+          padding: "5px",
           alignItems: "center",
+          justifyContent: 'space-between',
+          height: '12vh',
           border: "2px solid #f6f6f6",
           boxSizing: "border-box",
         }}
