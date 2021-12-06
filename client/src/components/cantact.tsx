@@ -11,15 +11,15 @@ interface Props {
 const useStyles = makeStyles({
   imageContainer: {
     width: "19%",
-    height: "auto",
+    height: "3.6rem",
   },
   image: {
-    width: "75%",
-    height: "3.8rem",
+    minWidth: "100%",
+    height: "100%",
     borderRadius: "50%",
   },
   textContainer: {
-    width: "83%",
+    width: "77%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-evenly",

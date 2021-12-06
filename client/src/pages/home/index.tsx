@@ -8,16 +8,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators, State } from '../../state';
 const Home = () => {
-  //convert this to redux function.
-  // const [currentChat, setCurrentChat] = useState(0);
   const dispatch = useDispatch();
   const { handleCurrentChat } = bindActionCreators(
     actionCreators,
     dispatch,
   );
-  const currentChat = useSelector((state: State) => state.isLogged);
+  const currentChat = useSelector((state: State) => state.currentChat);
   useEffect(() => {
-    handleCurrentChat(5)
   //   const getContacts = async () => {
   //     const { data } = await http.get("/user/contacts");
   //     setUserContacts(data.data);
