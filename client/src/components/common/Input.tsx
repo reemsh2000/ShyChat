@@ -12,6 +12,8 @@ interface InputProps {
   error?: any;
   errorStyle?: React.CSSProperties;
   disabled?:boolean;
+  placeholder?: string;
+  autoComplete?: string;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -25,7 +27,9 @@ export const Input: React.FC<InputProps> = ({
   inputStyle,
   error,
   errorStyle,
-  disabled=false
+  disabled=false,
+  placeholder,
+  autoComplete="on",
 }) => {
   return (
     <div style={styleName}>
@@ -38,6 +42,9 @@ export const Input: React.FC<InputProps> = ({
         type={type}
         style={inputStyle}
         disabled={disabled}
+        placeholder={placeholder}
+        autoComplete={autoComplete}
+
       />
       {error && <div style={errorStyle}>{error}</div>}
     </div>

@@ -1,60 +1,69 @@
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
+import { useEffect, useState } from "react";
 interface Props {
   name: string;
   imageLink: string;
   phoneNumber: string;
-  userId: number;
   key?: number;
+  setId: React.MouseEventHandler<HTMLDivElement>;
+  current?: boolean;
 }
 const useStyles = makeStyles({
   imageContainer: {
-    width: "20%",
-    height: "20%",
-    borderRadius: "50%",
-    marginRight: "15px",
+    width: "10vh",
+    height: "10vh",
   },
   image: {
-    backgroundColor: "red",
-    width: "90%",
-    height: "90%",
+    width: "100%",
+    height: "100%",
     borderRadius: "50%",
   },
   textContainer: {
-    width: "100%",
+    width: "81%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-evenly",
+    padding: '0.25rem'
   },
   BoxContainer: {
     display: "flex",
   },
   contactName: {
-    margin: "0",
-    padding: "0",
+    paddingBottom:'0.5rem',
+    color: '#black'
   },
   contactsSection:{
     width:'100%',
   }
 });
 
-const Cantact: React.FC<Props> = ({ name, imageLink, phoneNumber, userId }) => {
+const Cantact: React.FC<Props> = ({ name, imageLink, phoneNumber, setId, current }) => {
   const classes = useStyles();
-  const getChat = (id: number) => {};
+  const [color, setColor] = useState("#fff")
+useEffect(
+  () => {
+    if (current) {
+      setColor("#3E9D8A")
+    }
+  },[current])
+  
   return (
-    <div onClick={() => getChat(userId)} className={classes.contactsSection}>
+    <div onClick={setId} className={classes.contactsSection}>
       <Box
         sx={{
           width: "100%",
-          backgroundColor: "#fff",
+          paddingLeft: '1rem',
+          backgroundColor: color,
           "&:hover": {
             backgroundColor: "#3E9D8A",
             opacity: "0.9",
           },
           display: "flex",
-          padding: "10px",
           alignItems: "center",
+          justifyContent: 'space-between',
+          height: '12vh',
           border: "2px solid #f6f6f6",
           boxSizing: "border-box",
         }}

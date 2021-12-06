@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Cantact from "../../components/cantact";
-import http from "../../service/httpService";
-import style from './style';
+import style from "./style";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators, State } from "../../state";
 
-export const ContactsSection: React.FC = () => {
-  const [userContacts, setUserContacts] = useState([]);
+interface ContactsSection {
+  contacts: any[],
+  currentChatId?: number,
 
-  useEffect(() => {
-    const getContacts = async () => {
-      const { data } = await http.get("/user/contacts");
-      setUserContacts(data.data);
-    };
-    getContacts();
-  },[]);
+}
+
+ const ContactsSection: React.FC<ContactsSection> = ({contacts, currentChatId}) => {
+  const dispatch = useDispatch();
+  const { handleCurrentChat } = bindActionCreators(actionCreators, dispatch);
   return (
     <div style={style.contactsSection}>
-      {userContacts.length? (
-        userContacts.map((item: any) => {
-          <Cantact
+      {contacts.length ? (
+        contacts.map((item: any) => <Cantact    
+            setId={() => handleCurrentChat(item.id)}
             key={item.id}
             name={item.name}
             imageLink={item.photo}
             phoneNumber={item.phoneNumber}
-            userId={item.id}
-          />;
-        })
+            current = {item.id === currentChatId}
+          />
+        )
       ) : (
-
-        <p> </p>
+        <p> there is no contacts </p>
       )}
-         
     </div>
   );
 };
+
+export default ContactsSection;

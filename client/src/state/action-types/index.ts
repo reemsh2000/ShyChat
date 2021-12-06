@@ -3,6 +3,7 @@ export enum actionTypes {
     LOGOUT = 'LOGOUT',
     USERDATA = 'USERDATA',
     SHOWERROR = 'SHOWERROR',
+    CURRENTCHAT = 'CURRENTCHAT',
 }
 
 export interface User {
