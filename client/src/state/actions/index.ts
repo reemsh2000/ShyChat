@@ -22,6 +22,5 @@ interface showError {
 interface setCurrentChat {
     type: actionTypes.CURRENTCHAT,
     payload: number,
-
 }
 export type Action = loginAction | logoutAction | userDataAction | showError | setCurrentChat;

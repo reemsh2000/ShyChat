@@ -1,37 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Cantact from "../../components/cantact";
-import http from "../../service/httpService";
 import style from "./style";
 
- const ContactsSection: React.FC = () => {
-   // user contacts will come from redux after save it.
-  const userContacts = [
-    {
-      id: 1,
-      name: "ahmed",
-      phoneNumber: "0599585854",
-      photo:
-        "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80",
-    },
-    {
-      id: 2,
-      name: "mohammed",
-      phoneNumber: "0592574654",
-      photo:
-        "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80",
-    },
-    {
-      id: 3,
-      name: "master",
-      phoneNumber: "0598687226",
-      photo:
-        "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80",
-    },
-  ];
+interface ContactsSection {
+  contacts: any[],
+}
+
+ const ContactsSection: React.FC<ContactsSection> = ({contacts}) => {
   return (
     <div style={style.contactsSection}>
-      {userContacts.length ? (
-        userContacts.map((item: any) => <Cantact
+      {contacts.length ? (
+        contacts.map((item: any) => <Cantact
             key={item.id}
             name={item.name}
             imageLink={item.photo}
