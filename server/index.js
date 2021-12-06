@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { server, app } = require('./app');
 
 app.listen(app.get('port'), () => {

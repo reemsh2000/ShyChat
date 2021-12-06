@@ -17,15 +17,16 @@ io.on('connection', (socket) => {
   socket.on('send_message', async (data) => {
     // console.log(data);
     const {
-      senderId, receiverPhone, message, time,
+      senderId, receiverId, message, time,
     } = data;
-    await createChat(senderId, receiverPhone, socket);
+    await createChat(senderId, receiverId, socket);
     await addNewMessage(senderId, message, time, socket.chatId);
     socket.to(socket.chatId).emit('receive_message', data);
   });
 
   socket.on('disconnect', () => {
-    // console.log('User Disconnected', socket.id);
+    // eslint-disable-next-line no-console
+    console.log('User Disconnected', socket.id);
   });
 });
 
