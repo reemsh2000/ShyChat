@@ -9,6 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import http from '../service/httpService'
 import { CoPresentOutlined } from '@mui/icons-material';
+import Cantact from './cantact'
 interface SearchProps {
 
 }
@@ -60,13 +61,21 @@ const SearchAppBar:React.FC<SearchProps> = ({}) => {
   const [searchResults, setSearchResults] = useState([]);
 
   const searchRequest = async () => {
-    console.log(searchInput);
-    const users = await http.get('http://localhost:6000/user/search/'+searchInput)
-    console.log(users);
-    setSearchResults(users.data);
+    if(searchInput){
+      try{
+        const users = await http.get('user/search/'+searchInput)
+        setSearchResults(users.data);
+  
+      }catch(ex){
+        setSearchResults([]);
+      }
+    }else{
+      setSearchResults([]);
+    }
   }
 
   return (
+    <>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -100,6 +109,10 @@ const SearchAppBar:React.FC<SearchProps> = ({}) => {
         </Toolbar>
       </AppBar>
     </Box>
+    {searchResults.map((user) => (
+      <Cantact name={user['name']} imageLink={user['photo']} phoneNumber={user['phone']} userId={user['id']}/>
+    ))}
+    </>
   );
 }
 
