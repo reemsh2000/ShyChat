@@ -11,14 +11,14 @@ interface UserNavProps {
 }
 const useStyles = makeStyles({
   imageContainer: {
-    width: "10%",
-    height: "100%",
+    width: "8vh",
+    height: "8vh",
     borderRadius: "50%",
+    marginRight: "1rem",
   },
   image: {
-    backgroundColor: "red",
-    width: "70%",
-    height: "auto",
+    width: "100%",
+    height: "100%",
     borderRadius: "50%",
   },
   textContainer: {
@@ -36,7 +36,6 @@ const useStyles = makeStyles({
   },
   contactsSection: {
     width: "100%",
-    height:'20vh'
   },
 });
 
@@ -51,7 +50,7 @@ const UserNav: React.FC<UserNavProps> = ({
       <Box
         sx={{
           width: "100%",
-          height:'5rem',
+          height:'10vh',
           backgroundColor: "#fff",
           display: "flex",
           padding: "10px",

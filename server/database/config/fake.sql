@@ -1,3 +1,4 @@
+
 INSERT INTO
   chat (name)
 values
@@ -21,3 +22,4 @@ values
 (2, 1, 'yess'),
   (1, 1, 'where'),
 (2, 1, 'gaza');
+

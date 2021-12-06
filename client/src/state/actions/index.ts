@@ -18,4 +18,9 @@ interface userDataAction {
 interface showError {
     type: actionTypes.SHOWERROR,
 }
-export type Action = loginAction | logoutAction | userDataAction | showError;
+
+interface setCurrentChat {
+    type: actionTypes.CURRENTCHAT,
+    payload: number,
+}
+export type Action = loginAction | logoutAction | userDataAction | showError | setCurrentChat;
