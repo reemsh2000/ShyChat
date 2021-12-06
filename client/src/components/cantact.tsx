@@ -10,7 +10,7 @@ interface Props {
 }
 const useStyles = makeStyles({
   imageContainer: {
-    width: "18%",
+    width: "20%",
     height: "auto",
   },
   image: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
   contactName: {
     paddingBottom:'0.5rem',
-    color: '#009688'
+    color: '#black'
   },
   contactsSection:{
     width:'100%',
@@ -45,13 +45,13 @@ const Cantact: React.FC<Props> = ({ name, imageLink, phoneNumber, userId }) => {
       <Box
         sx={{
           width: "100%",
+          paddingLeft: '1rem',
           backgroundColor: "#fff",
           "&:hover": {
             backgroundColor: "#3E9D8A",
             opacity: "0.9",
           },
           display: "flex",
-          padding: "5px",
           alignItems: "center",
           justifyContent: 'space-between',
           height: '12vh',

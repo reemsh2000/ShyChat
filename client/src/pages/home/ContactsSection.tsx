@@ -4,7 +4,7 @@ import http from "../../service/httpService";
 import style from "./style";
 
  const ContactsSection: React.FC = () => {
-  // const [userContacts, setUserContacts] = useState([]);
+   // user contacts will come from redux after save it.
   const userContacts = [
     {
       id: 1,
@@ -28,15 +28,6 @@ import style from "./style";
         "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80",
     },
   ];
-
-  // useEffect(() => {
-  //   const getContacts = async () => {
-  //     const { data } = await http.get("/user/contacts");
-  //     setUserContacts(data.data);
-  //   };
-  //   getContacts();
-  // }, []);
-  console.log(userContacts)
   return (
     <div style={style.contactsSection}>
       {userContacts.length ? (
