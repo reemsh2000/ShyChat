@@ -17,6 +17,7 @@ export const logout = (): Function => {
     });
   };
 };
+
 const setUserData = (payload:any) => {
   return {
     type: actionTypes.USERDATA,
@@ -50,3 +51,15 @@ export const handleErrorMessage = (errors:Errors): Function => {
     }));
   };
 };
+
+export const handleCurrentChat = (chatId: number): Function => {
+  return (dispatch: Dispatch) => {
+    dispatch(
+      {
+        type: actionTypes.CURRENTCHAT,
+        payload: chatId,
+      }
+    );
+  };
+};
+

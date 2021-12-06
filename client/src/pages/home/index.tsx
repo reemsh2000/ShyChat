@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ContactsSection from "./ContactsSection";
 import style from "./style";
 import UserNav from "../../components/common/userNav";
 import Img from "../../components/common/Img";
 import logo from "../../util/images/logo.png";
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators, State } from '../../state';
 const Home = () => {
   //convert this to redux function.
-  const [currentChat, setCurrentChat] = useState(0);
-  // useEffect(() => {
+  // const [currentChat, setCurrentChat] = useState(0);
+  const dispatch = useDispatch();
+  const { handleCurrentChat } = bindActionCreators(
+    actionCreators,
+    dispatch,
+  );
+  const currentChat = useSelector((state: State) => state.isLogged);
+  useEffect(() => {
+    handleCurrentChat(5)
   //   const getContacts = async () => {
   //     const { data } = await http.get("/user/contacts");
   //     setUserContacts(data.data);
   //   };
   //   getContacts();
-  // }, []);
+  }, []);
 
   return (
     <div style={style.homeContainer}>
