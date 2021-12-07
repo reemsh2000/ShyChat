@@ -8,16 +8,51 @@ import { useSelector } from "react-redux";
 import { State } from "../../state";
 import http from "../../service/httpService";
 import { Input } from "../../components/common/Input";
+import { io } from "socket.io-client";
+import SendIcon from "@mui/icons-material/Send";
+
+const socket = io("http://localhost:7000");
+
 const Home = () => {
   const [currentMessage, setCurrentMessage] = useState("");
+
   const [messagesList, setMessagesList] = useState([]);
+
   const [chatData, setChatData] = useState({
     name: "",
-    phoneNumber: "",
+    phone: "",
     photo: "",
   });
+
   const [userContacts, setUserContacts] = useState([]);
   const currentChatId = useSelector((state: State) => state.currentChat);
+  const { id } = useSelector((state: State) => state.userInfromation);
+
+  const sendMessage = async () => {
+    if (currentMessage.trim() !== "") {
+      const data = {
+        senderId: id,
+        receiverId: currentChatId,
+        message: currentMessage,
+        time: `${new Date(Date.now()).getHours()}:${new Date(
+          Date.now()
+        ).getMinutes()}`,
+        id: messagesList.length + 1,
+      };
+      await socket.emit("send_message", data);
+      const updateMessages: any = [...messagesList, data];
+      setMessagesList(updateMessages);
+      setCurrentMessage("");
+    }
+  };
+
+  useEffect(() => {
+    socket.on("receive_message", (data: any) => {
+      const updateMessages: any = [...messagesList, data];
+      setMessagesList(updateMessages);
+    });
+  }, [socket]);
+
   useEffect(() => {
     const getContacts = async () => {
       const { data } = await http.get("/user/contacts");
@@ -50,7 +85,8 @@ const Home = () => {
     };
     getMessages();
   }, [currentChatId]);
-  console.log(messagesList)
+
+
   return (
     <div style={style.homeContainer}>
       <ContactsSection contacts={userContacts} currentChatId={currentChatId} />
@@ -64,23 +100,29 @@ const Home = () => {
           />
 
           <div style={style.messages}>
-            
-
-
+            {messagesList.map((message: any) => (
+              <div key={message.id}>
+                <p>{message.content}</p>
+                <p>{message.messagetime}</p>
+              </div>
+            ))}
           </div>
 
-          <Input
-            name="currentMessage"
-            label="Message"
-            type="text"
-            styleName={style.currentMessage}
-            value={currentMessage}
-            onChange={handleChange}
-            labelStyle={style.none}
-            inputStyle={style.messageTyping}
-            placeholder="Message..."
-            autoComplete="off"
-          />
+          <div style={style.footer}>
+            <Input
+              name="currentMessage"
+              label="Message"
+              type="text"
+              styleName={style.currentMessage}
+              value={currentMessage}
+              onChange={handleChange}
+              labelStyle={style.none}
+              inputStyle={style.messageTyping}
+              placeholder="Message..."
+              autoComplete="off"
+            />
+            <SendIcon onClick={() => sendMessage()} style={style.sendBtn} />
+          </div>
         </div>
       ) : (
         <div style={style.noChat}>

@@ -39,7 +39,7 @@ const style = {
   },
   currentMessage: {
     height: "10vh",
-    width: "100%",
+    width: "90%",
     background: "#f3f3f3",
     display: "flex",
     justifyContent: "center",
@@ -51,13 +51,23 @@ const style = {
   }, 
   messageTyping: {
     height: "8vh",
-    width: "100%",
+    width: "90%",
     padding: "0.5rem",
     outline: "none",
     border: "2px solid #f7f7f7",
     borderRadius: "1rem"
-    
-    
+  },
+  footer: {
+    display:"flex",
+  },
+  sendBtn: {
+    width: "10%",
+    fontSize: "1.5rem",
+    border: "none",
+    outline: "none", 
+    color: "rgb(0, 60, 87)",
+    cursor: "pointer",
+    alignSelf: "center",
   }
 
 };
