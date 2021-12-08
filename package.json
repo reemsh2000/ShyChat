@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/GSG-G10/ShyChat#readme",
   "engines": {
+    "npm": "6.x",
     "node": "10.x"
   }
 }
