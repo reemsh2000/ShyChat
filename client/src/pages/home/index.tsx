@@ -70,13 +70,13 @@ const Home = () => {
       await socket.emit("send_message", data);
       const updateMessages: any = [...messagesList, data];
       setMessagesList(updateMessages);
-      console.log(messagesList)
       setCurrentMessage("");
     }
   };
 
   useEffect(() => {
     socket.on("receive_message", (data: any) => {
+      console.log(data);
       const updateMessages: any = [...messagesList, data];
       setMessagesList(updateMessages);
     });
@@ -84,13 +84,13 @@ const Home = () => {
   }, [messagesList]);
 
   useEffect(() => {
+
     const getContacts = async () => {
       const { data } = await http.get("/user/contacts");
       setUserContacts(data.data);
     };
     getContacts();
   }, []);
-
 
   const handleChange = ({
     currentTarget: input,
@@ -102,22 +102,20 @@ const Home = () => {
     const getCurrentReceiver = (currentId: number) => {
       return userContacts.filter((item: any) => item.id === currentId);
     };
-    const userReciver: any = getCurrentReceiver(1)[0];
+    const userReciver: any = getCurrentReceiver(currentChatId)[0];
     const updateChatData = { ...chatData, ...userReciver };
     setChatData(updateChatData);
-
 
     const getMessages = async () => {
       const { data } = await http.post("/user/messages", {
         receiverId: currentChatId,
       });
-      const updateMessages: any = [...messagesList, ...data.data];
+      const updateMessages: any = data.data;
       setMessagesList(updateMessages);
     };
     getMessages();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentChatId]);
-
   const classes = useStyles();
   return (
     <div style={style.homeContainer}>
@@ -133,11 +131,11 @@ const Home = () => {
 
           <div style={style.messages}>
             <ScrollableFeed className={classes.scrollBar}>
-              {messagesList.map((message: any, index) => (
+              {messagesList.length && messagesList.map((message: any, index) => (
                 <div key={index} style={message.userid === currentChatId ? style.yoursMessage : style.mineMessage}>
                   <div className='reMessage'>
-                    {message.userid === currentChatId ? <Img src={chatData.photo}  alt={`${chatData.name} photo`} styleName={style.userImage} /> : ''}
-                    <p className={message.userid === currentChatId ?'receivedMessage' : 'sentMessages'}>{message.content}</p>
+                    {message.userid === currentChatId ? <Img src={chatData.photo} alt={`${chatData.name} photo`} styleName={style.userImage} /> : ''}
+                    <p className={message.userid === currentChatId ? 'receivedMessage' : 'sentMessages'}>{message.content}</p>
                   </div>
                   <p className='message'>{message.messagetime}</p>
                 </div>
