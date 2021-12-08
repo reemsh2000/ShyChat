@@ -1,4 +1,4 @@
-import {useEffect,useState} from 'react';
+import { useEffect, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import http from '../service/httpService'
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../state";
 import { bindActionCreators } from "redux";
 import { CoPresentOutlined } from '@mui/icons-material';
@@ -57,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const SearchAppBar:React.FC<SearchProps> = ({}) => {
+const SearchAppBar: React.FC<SearchProps> = ({ }) => {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const dispatch = useDispatch();
@@ -65,57 +65,60 @@ const SearchAppBar:React.FC<SearchProps> = ({}) => {
   const userInfromation = useSelector((state: State) => state.userInfromation);
   const { id } = userInfromation;
   const searchRequest = async () => {
-    if(searchInput){
-      try{
-        const users = await http.get('user/search/'+searchInput)
+    if (searchInput) {
+      try {
+        const users = await http.get('user/search/' + searchInput)
         setSearchResults(users.data);
-  
-      }catch(ex){
+
+      } catch (ex) {
         setSearchResults([]);
       }
-    }else{
+    } else {
       setSearchResults([]);
     }
   }
 
   return (
     <>
-    <Box sx={{  height: '10vh', width: '100%' , }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-          </IconButton>
-          <Typography
-            variant="h2"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            Shy Chat
-          </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-              onChange={(e) => {setSearchInput(e.target.value)
-              searchRequest()}}
-            />
-          </Search>
-        </Toolbar>
-      </AppBar>
-    </Box>
-    {searchResults.map((user) => (
-      id!==user['id']&&
-      <Cantact name={user['name']} imageLink={user['photo']} phoneNumber={user['phone']} userId={user['id']} setId={() => handleCurrentChat(user['id'])}/>))}
+      <Box sx={{ height: '10vh', width: '100%', }}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2 }}
+            >
+            </IconButton>
+            <Typography
+              variant="h2"
+              noWrap
+              component="div"
+              sx={{ display: { xs: 'none', sm: 'block' } }}
+            >
+              Shy Chat
+            </Typography>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+                onChange={(e) => {
+                  setSearchInput(e.target.value)
+                  searchRequest()
+                }}
+                value={searchInput}
+              />
+            </Search>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      {searchResults.map((user) => (
+        id !== user['id'] &&
+        <Cantact key={user['phone']} name={user['name']} imageLink={user['photo']} phoneNumber={user['phone']} userId={user['id']} setId={() => {handleCurrentChat(user['id']);setSearchResults([]);setSearchInput('');}} />))}
     </>
   );
 }

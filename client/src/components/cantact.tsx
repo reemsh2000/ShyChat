@@ -47,6 +47,8 @@ useEffect(
   () => {
     if (current) {
       setColor("#3E9D8A")
+    }else{
+      setColor("#fff")
     }
   },[current])
   
