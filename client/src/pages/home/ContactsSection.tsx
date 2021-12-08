@@ -4,6 +4,7 @@ import style from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "../../state";
+import SearchAppBar from '../../components/Search';
 
 interface ContactsSection {
   contacts: any[],
@@ -16,6 +17,7 @@ interface ContactsSection {
   const { handleCurrentChat } = bindActionCreators(actionCreators, dispatch);
   return (
     <div style={style.contactsSection}>
+          <SearchAppBar />
       {contacts.length ? (
         contacts.map((item: any) => <Cantact    
             setId={() => handleCurrentChat(item.id)}

@@ -8,8 +8,12 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import http from '../service/httpService'
+import { useDispatch,useSelector } from "react-redux";
+import { actionCreators, State } from "../state";
+import { bindActionCreators } from "redux";
 import { CoPresentOutlined } from '@mui/icons-material';
 import Cantact from './cantact'
+
 interface SearchProps {
 
 }
@@ -48,10 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
+      width: '100%',
     },
   },
 }));
@@ -59,7 +60,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const SearchAppBar:React.FC<SearchProps> = ({}) => {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-
+  const dispatch = useDispatch();
+  const { handleCurrentChat } = bindActionCreators(actionCreators, dispatch);
+  const userInfromation = useSelector((state: State) => state.userInfromation);
+  const { id } = userInfromation;
   const searchRequest = async () => {
     if(searchInput){
       try{
@@ -76,7 +80,7 @@ const SearchAppBar:React.FC<SearchProps> = ({}) => {
 
   return (
     <>
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{  height: '10vh', width: '100%' , }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -88,12 +92,12 @@ const SearchAppBar:React.FC<SearchProps> = ({}) => {
           >
           </IconButton>
           <Typography
-            variant="h6"
+            variant="h2"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            Shy Chat
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -110,8 +114,8 @@ const SearchAppBar:React.FC<SearchProps> = ({}) => {
       </AppBar>
     </Box>
     {searchResults.map((user) => (
-      <Cantact name={user['name']} imageLink={user['photo']} phoneNumber={user['phone']} userId={user['id']}/>
-    ))}
+      id!==user['id']&&
+      <Cantact name={user['name']} imageLink={user['photo']} phoneNumber={user['phone']} userId={user['id']} setId={() => handleCurrentChat(user['id'])}/>))}
     </>
   );
 }

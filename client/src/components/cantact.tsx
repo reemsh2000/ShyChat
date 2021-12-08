@@ -9,6 +9,7 @@ interface Props {
   key?: number;
   setId: React.MouseEventHandler<HTMLDivElement>;
   current?: boolean;
+  userId?:number;
 }
 const useStyles = makeStyles({
   imageContainer: {
