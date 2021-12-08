@@ -2,7 +2,6 @@ const { getChatMessages } = require('../../database/queries');
 
 const getMessages = async (req, res) => {
   const { id } = req.userObj;
-  console.log(req.body);
   const { receiverId } = req.body;
   try {
     const { rows } = await getChatMessages(id, receiverId);
