@@ -1,0 +1,25 @@
+{
+  "name": "shychat",
+  "version": "1.0.0",
+  "description": "## Live demo :tv:  [link]()",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd server && npm i && cd ../client && npm i && cd ..",
+    "heroku-postbuild": "NODE_ENV=production cd client && npm run build",
+    "start": "cd server && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSG-G10/ShyChat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GSG-G10/ShyChat/issues"
+  },
+  "homepage": "https://github.com/GSG-G10/ShyChat#readme",
+  "engines": {
+    "npm": "6.x",
+    "node": "10.x"
+  }
+}

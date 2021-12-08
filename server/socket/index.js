@@ -7,7 +7,7 @@ const { addNewMessage } = require('../database/queries/chat');
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3001',
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
   },
 });
@@ -17,10 +17,10 @@ io.on('connection', (socket) => {
   socket.on('send_message', async (data) => {
     // console.log(data);
     const {
-      senderId, receiverId, message, time,
+      userid, receiverId, content, messagetime,
     } = data;
-    await createChat(senderId, receiverId, socket);
-    await addNewMessage(senderId, message, time, socket.chatId);
+    await createChat(userid, receiverId, socket);
+    await addNewMessage(userid, content, messagetime, socket.chatId);
     socket.to(socket.chatId).emit('receive_message', data);
   });
 

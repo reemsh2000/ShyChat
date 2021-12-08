@@ -10,8 +10,36 @@ import http from "../../service/httpService";
 import { Input } from "../../components/common/Input";
 import { io } from "socket.io-client";
 import SendIcon from "@mui/icons-material/Send";
+import ScrollableFeed from 'react-scrollable-feed'
+import { makeStyles } from "@mui/styles";
+import './messages.css';
 
 const socket = io("http://localhost:7000");
+
+const useStyles = makeStyles({
+  scrollBar: {
+    display: "flex",
+    justifyContent: 'space-between',
+    flexDirection: "column" as "column",
+    width: '100%',
+    alignItems: 'flex-end',
+
+    '&::-webkit-scrollbar': {
+      width: '0.4em',
+      // display:'none'
+    },
+    '&::-webkit-scrollbar-track': {
+      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: 'rgba(0,0,0,.1)',
+      outline: '1px solid slategrey'
+    },
+
+  },
+
+}
+);
 
 const Home = () => {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -31,10 +59,10 @@ const Home = () => {
   const sendMessage = async () => {
     if (currentMessage.trim() !== "") {
       const data = {
-        senderId: id,
+        userid: id,
         receiverId: currentChatId,
-        message: currentMessage,
-        time: `${new Date(Date.now()).getHours()}:${new Date(
+        content: currentMessage,
+        messagetime: `${new Date(Date.now()).getHours()}:${new Date(
           Date.now()
         ).getMinutes()}`,
         id: messagesList.length + 1,
@@ -42,6 +70,7 @@ const Home = () => {
       await socket.emit("send_message", data);
       const updateMessages: any = [...messagesList, data];
       setMessagesList(updateMessages);
+      console.log(messagesList)
       setCurrentMessage("");
     }
   };
@@ -51,7 +80,8 @@ const Home = () => {
       const updateMessages: any = [...messagesList, data];
       setMessagesList(updateMessages);
     });
-  }, [socket]);
+    // return ()=>
+  }, [messagesList]);
 
   useEffect(() => {
     const getContacts = async () => {
@@ -61,9 +91,6 @@ const Home = () => {
     getContacts();
   }, []);
 
-  const getCurrentReceiver = (currentId: number) => {
-    return userContacts.filter((item: any) => item.id === currentId);
-  };
 
   const handleChange = ({
     currentTarget: input,
@@ -72,9 +99,13 @@ const Home = () => {
   };
 
   useEffect(() => {
+    const getCurrentReceiver = (currentId: number) => {
+      return userContacts.filter((item: any) => item.id === currentId);
+    };
     const userReciver: any = getCurrentReceiver(1)[0];
     const updateChatData = { ...chatData, ...userReciver };
     setChatData(updateChatData);
+
 
     const getMessages = async () => {
       const { data } = await http.post("/user/messages", {
@@ -84,9 +115,10 @@ const Home = () => {
       setMessagesList(updateMessages);
     };
     getMessages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentChatId]);
 
-
+  const classes = useStyles();
   return (
     <div style={style.homeContainer}>
       <ContactsSection contacts={userContacts} currentChatId={currentChatId} />
@@ -100,14 +132,18 @@ const Home = () => {
           />
 
           <div style={style.messages}>
-            {messagesList.map((message: any) => (
-              <div key={message.id}>
-                <p>{message.content}</p>
-                <p>{message.messagetime}</p>
-              </div>
-            ))}
+            <ScrollableFeed className={classes.scrollBar}>
+              {messagesList.map((message: any, index) => (
+                <div key={index} style={message.userid === currentChatId ? style.yoursMessage : style.mineMessage}>
+                  <div className='reMessage'>
+                    {message.userid === currentChatId ? <Img src={chatData.photo}  alt={`${chatData.name} photo`} styleName={style.userImage} /> : ''}
+                    <p className={message.userid === currentChatId ?'receivedMessage' : 'sentMessages'}>{message.content}</p>
+                  </div>
+                  <p className='message'>{message.messagetime}</p>
+                </div>
+              ))}
+            </ScrollableFeed>
           </div>
-
           <div style={style.footer}>
             <Input
               name="currentMessage"
