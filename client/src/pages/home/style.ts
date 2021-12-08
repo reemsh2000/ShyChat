@@ -32,11 +32,12 @@ const style = {
     height: "80vh",
     width: "100%",
     background: " linear-gradient(to bottom, #74c1b2 37%,#94eff7 70%)",
+    // background: "#b5ccff",
     display: "flex",
     flexDirection: "column" as "column",
     padding: "2.5rem",
-    borderRadius: "1.5rem"
-  },
+    // borderRadius: "1.5rem",
+    },
   currentMessage: {
     height: "10vh",
     width: "90%",
@@ -68,6 +69,46 @@ const style = {
     color: "rgb(0, 60, 87)",
     cursor: "pointer",
     alignSelf: "center",
+  },
+  yoursMessage:{
+    margin:'10px',
+    display:'flex',
+    justifyContent:'flex-end',
+    flexDirection: "column" as "column",
+    alignItems:'center',
+    alignSelf: 'flex-start',
+    position:'relative',
+    
+  },
+  mineMessage:{
+    display:'flex',
+    justifyContent:'flex-end',
+    margin:'10px',
+    alignSelf: 'flex-end',
+    alignItems:'center',
+    flexDirection: "column" as "column",
+  },
+  receivedMessage:{
+    background: "#D8DEE6",
+    borderRadius:'15px',
+    padding:'0.4rem 2rem',
+  },
+  sentMessages:{
+    background: "#44AB95",
+    borderRadius:'15px',
+    padding:'0.4rem 2rem',
+    color:'#fff',
+  },
+  reMessage:{
+    display: "flex",
+    // alignItems: "center",
+    // justifyContent:'space-evenly',
+  },
+  userImage:{
+   width:'30px',
+   hight:'30px',
+   borderRadius:'50%',
+   marginRight:'7px',
   }
 
 };
