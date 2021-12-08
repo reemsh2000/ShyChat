@@ -10,6 +10,7 @@ const style = {
     height: "100vh",
     display: "flex",
     alignItems: "center",
+    justifyContent: "flex-start",
     flexDirection: "column" as "column",
   },
   chat: {
