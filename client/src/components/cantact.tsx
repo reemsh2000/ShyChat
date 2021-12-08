@@ -69,6 +69,8 @@ useEffect(
           height: '12vh',
           border: "2px solid #f6f6f6",
           boxSizing: "border-box",
+          borderRadius:'12px',
+          margin:'5px 0',
         }}
       >
         <div className={classes.imageContainer}>

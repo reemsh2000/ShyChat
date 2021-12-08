@@ -6,7 +6,7 @@ const style = {
   },
   contactsSection: {
     backgroundColor: "#F8F9FA",
-    width: "35%",
+    width: "30%",
     height: "100vh",
     display: "flex",
     alignItems: "center",
@@ -15,7 +15,7 @@ const style = {
   },
   chat: {
     backgroundColor: "rgb(243, 243, 243)",
-    width: "65%",
+    width: "70%",
     height: "100vh",
 
   },
@@ -32,8 +32,8 @@ const style = {
   messages: {
     height: "80vh",
     width: "100%",
-    background: " linear-gradient(to bottom, #74c1b2 37%,#94eff7 70%)",
-    // background: "#b5ccff",
+    // background: " linear-gradient(to bottom, #74c1b2 37%,#94eff7 70%)",
+    background: "#F8F9FA",
     display: "flex",
     flexDirection: "column" as "column",
     padding: "2.5rem",
