@@ -27,8 +27,8 @@
   },
   "scripts": {
     "test": " NODE_ENV=test jest test/test.js",
-    "start": " NODE_ENV=production node ./src/index.js",
-    "dev": " NODE_ENV=development nodemon src/index.js"
+    "start": " NODE_ENV=production node index.js",
+    "dev": " NODE_ENV=development nodemon index.js"
   },
   "author": "",
   "license": "ISC",
