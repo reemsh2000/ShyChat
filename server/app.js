@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(router);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(join(__dirname, '..', '..', 'client', 'build')));
+  app.use(express.static(join(__dirname, '..', 'client', 'build')));
   app.all('*', (req, res) => res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html')));
 }
 module.exports = { server, app };
