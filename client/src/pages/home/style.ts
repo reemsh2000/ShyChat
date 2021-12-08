@@ -88,22 +88,7 @@ const style = {
     alignItems:'center',
     flexDirection: "column" as "column",
   },
-  receivedMessage:{
-    background: "#D8DEE6",
-    borderRadius:'15px',
-    padding:'0.4rem 2rem',
-  },
-  sentMessages:{
-    background: "#44AB95",
-    borderRadius:'15px',
-    padding:'0.4rem 2rem',
-    color:'#fff',
-  },
-  reMessage:{
-    display: "flex",
-    // alignItems: "center",
-    // justifyContent:'space-evenly',
-  },
+
   userImage:{
    width:'30px',
    hight:'30px',

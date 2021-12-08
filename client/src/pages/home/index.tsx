@@ -12,7 +12,7 @@ import { io } from "socket.io-client";
 import SendIcon from "@mui/icons-material/Send";
 import ScrollableFeed from 'react-scrollable-feed'
 import { makeStyles } from "@mui/styles";
-
+import './messages.css';
 
 const socket = io("http://localhost:7000");
 
@@ -135,11 +135,11 @@ const Home = () => {
             <ScrollableFeed className={classes.scrollBar}>
               {messagesList.map((message: any, index) => (
                 <div key={index} style={message.userid === currentChatId ? style.yoursMessage : style.mineMessage}>
-                  <div style={style.reMessage}>
+                  <div className='reMessage'>
                     {message.userid === currentChatId ? <Img src={chatData.photo}  alt={`${chatData.name} photo`} styleName={style.userImage} /> : ''}
-                    <p style={message.userid === currentChatId ? style.receivedMessage : style.sentMessages}>{message.content}</p>
+                    <p className={message.userid === currentChatId ?'receivedMessage' : 'sentMessages'}>{message.content}</p>
                   </div>
-                  <p>{message.messagetime}</p>
+                  <p className='message'>{message.messagetime}</p>
                 </div>
               ))}
             </ScrollableFeed>
