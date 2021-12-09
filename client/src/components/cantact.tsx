@@ -83,7 +83,6 @@ useEffect(
         </div>
         <div className={classes.textContainer}>
           <h3 className={classes.contactName}>{name}</h3>
-          <p>{phoneNumber}</p>
         </div>
       </Box>
     </div>

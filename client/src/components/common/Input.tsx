@@ -14,6 +14,7 @@ interface InputProps {
   disabled?:boolean;
   placeholder?: string;
   autoComplete?: string;
+  onSend?:any
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -30,6 +31,7 @@ export const Input: React.FC<InputProps> = ({
   disabled=false,
   placeholder,
   autoComplete="on",
+  onSend
 }) => {
   return (
     <div style={styleName}>
@@ -44,7 +46,7 @@ export const Input: React.FC<InputProps> = ({
         disabled={disabled}
         placeholder={placeholder}
         autoComplete={autoComplete}
-
+        onKeyPress={onSend}
       />
       {error && <div style={errorStyle}>{error}</div>}
     </div>
