@@ -14,14 +14,14 @@ const app = express();
 const router = require('./routes');
 
 const server = http.createServer(app);
-const io = new Server(server, {
+const io = new Server(9001, {
   cors: {
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
   },
 });
 
-app.set('port', process.env.PORT || 6000);
+// app.set('port', process.env.PORT || 8080);
 app.disable('x-powered-by');
 app.use(cors());
 app.use(compression());
@@ -30,13 +30,31 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
+const createChat = require('./controllers/chat');
+const { addNewMessage } = require('./database/queries/chat');
 
-server.listen(7000, () => {
-  console.log('socket server is running');
+io.on('connection', (socket) => {
+  console.log(`User Connected: ${socket.id}`);
+
+  socket.on('send_message', async (data) => {
+    console.log(data);
+    const {
+      userid, receiverId, content, messagetime,
+    } = data;
+    await createChat(userid, receiverId, socket);
+    console.log(socket.chatId)
+    await addNewMessage(userid, content, messagetime, socket.chatId);
+    socket.to(socket.chatId).emit('receive_message', data);
+  });
+
+  socket.on('disconnect', () => {
+    // eslint-disable-next-line no-console
+    console.log('User Disconnected', socket.id);
+  });
 });
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(join(__dirname, '..', 'client', 'build')));
   app.all('*', (req, res) => res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html')));
 }
-module.exports = { io, app };
+module.exports = { io, app, server };

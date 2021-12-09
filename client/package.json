@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:6000",
+  "proxy": "http://localhost:9000",
   "dependencies": {
     "@typescript-eslint/parser": "^5.6.0",
     "@types/react-router-dom": "^5.3.2",
