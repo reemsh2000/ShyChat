@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ContactsSection from "./ContactsSection";
-import "./style.css";
 import UserNav from "../../components/common/userNav";
 import Img from "../../components/common/Img";
 import logo from "../../util/images/logo.png";
@@ -11,7 +10,7 @@ import { Input } from "../../components/common/Input";
 import { io } from "socket.io-client";
 import SendIcon from "@mui/icons-material/Send";
 import ScrollableFeed from 'react-scrollable-feed'
-import { makeStyles } from "@mui/styles";
+import "./style.css";
 import './messages.css';
 
 const socket = io('https://shychatapp.herokuapp.com', {
@@ -93,7 +92,7 @@ const Home = () => {
     getMessages();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentChatId]);
-  const classes = useStyles();
+
   return (
     <div className='homeContainer'>
       <ContactsSection contacts={userContacts} currentChatId={currentChatId} />
