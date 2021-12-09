@@ -155,12 +155,6 @@ const Home = () => {
               inputStyle='messageTyping'
               placeholder="Message..."
               autoComplete="off"
-              onSend={(e: any) => {
-                if (e.keyCode === 13) {
-                  e.preventDefault();
-                  sendMessage()
-                }
-              }}
             />
             <SendIcon onClick={() => sendMessage()} className='sendBtn' />
           </div>
