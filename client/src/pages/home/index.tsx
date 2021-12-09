@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ContactsSection from "./ContactsSection";
-import  "./style.css";
+import "./style.css";
 import UserNav from "../../components/common/userNav";
 import Img from "../../components/common/Img";
 import logo from "../../util/images/logo.png";
@@ -14,7 +14,7 @@ import ScrollableFeed from 'react-scrollable-feed'
 import { makeStyles } from "@mui/styles";
 import './messages.css';
 
-const socket = io('https://shychatapp.herokuapp.com',{
+const socket = io('https://shychatapp.herokuapp.com', {
   withCredentials: true,
 });
 
@@ -131,7 +131,7 @@ const Home = () => {
           />
 
           <div className='messages'>
-            <ScrollableFeed className={classes.scrollBar}>
+            <ScrollableFeed className='scrollBar'>
               {messagesList.length && messagesList.map((message: any, index) => (
                 <div key={index} className={message.userid === currentChatId ? 'yoursMessage' : 'mineMessage'}>
                   <div className='reMessage'>
@@ -155,10 +155,11 @@ const Home = () => {
               inputStyle='messageTyping'
               placeholder="Message..."
               autoComplete="off"
-              onSend={(e:any)=>{
-                if(e.keyCode === 13){
-                  e.preventDefault(); 
-                  sendMessage()}
+              onSend={(e: any) => {
+                if (e.keyCode === 13) {
+                  e.preventDefault();
+                  sendMessage()
+                }
               }}
             />
             <SendIcon onClick={() => sendMessage()} className='sendBtn' />
