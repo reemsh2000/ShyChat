@@ -1,16 +1,9 @@
-const http = require('http');
-const { Server } = require('socket.io');
-const app = require('../app');
+// const http = require('http');
+// const { Server } = require('socket.io');
+const io = require('../app');
 const createChat = require('../controllers/chat');
 const { addNewMessage } = require('../database/queries/chat');
 
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'],
-  },
-});
 io.on('connection', (socket) => {
   // console.log(`User Connected: ${socket.id}`);
 
@@ -30,4 +23,4 @@ io.on('connection', (socket) => {
   });
 });
 
-module.exports = server;
+module.exports = io;
