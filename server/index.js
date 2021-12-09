@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-const { app, server } = require('./app');
+const { app } = require('./app');
 
-app.listen(9000, () => {
+app.listen(app.get('port'), () => {
   console.log('server is running http://localhost:9000');
 });
 

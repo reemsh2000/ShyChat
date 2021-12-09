@@ -21,7 +21,7 @@ const io = new Server(9001, {
   },
 });
 
-// app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 9000);
 app.disable('x-powered-by');
 app.use(cors());
 app.use(compression());
