@@ -13,7 +13,9 @@ const login = async (req, res, next) => {
       return res.status(400).json({ message: 'Invalid phone or password' });
     }
 
-    const { id, photo, bio } = rows[0];
+    const {
+      id, photo, bio, name,
+    } = rows[0];
     if (rows[0].approve === false) {
       return res.status(400).json({ message: 'Please verify your phone number' });
     }
@@ -23,7 +25,7 @@ const login = async (req, res, next) => {
       return res.status(400).json({ message: 'Invalid phone or password' });
     }
     const token = await signToken({
-      id, phoneNumber, photo, bio,
+      id, phoneNumber, photo, bio, name,
     });
     res.cookie('token', token).json({ message: 'You are Logged Successfully' });
   } catch (err) {
