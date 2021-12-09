@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators, State } from '../state';
 import { theme } from '../util/customizeStyle';
-import style from './style';
+import './style.css';
 import { SignUp } from '../pages/signUp';
 import CustomizedSnackbars from '../service/ErrorAlert';
 import Login from '../pages/login';
@@ -32,18 +32,19 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={style.app}>
+      <div className='app'>
         <Router>
           <Switch>
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/verfiy" component={Verify} />
+            <Route  path="/signup" component={SignUp} />
+            <Route  path="/verfiy" component={Verify} />
             <Route exact path="/login" component={Login} />
-            <ProtectedRoute isLogged={isLoggedState} path="/">
-              <Home />
-            </ProtectedRoute>
             <ProtectedRoute isLogged={isLoggedState} path="/editprofile">
               <EditProfile />
             </ProtectedRoute>
+            <ProtectedRoute isLogged={isLoggedState} path="/">
+              <Home />
+            </ProtectedRoute>
+
             {/* <Route path="/notfound" component={Error} /> */}
             {/* <Redirect to="/Not-Found" /> */}
           </Switch>

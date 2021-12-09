@@ -2,14 +2,14 @@ import React from "react";
 import Img from "../../components/common/Img";
 import { SignUpForm } from "./SignUpForm";
 import signup from "../../util/images/signup.jpg";
-import style from "./style";
+import "./style.css";
 
 export const SignUp: React.FC = () => {
   return (
-    <div style={style.page}>
-    <div style={style.signUpContainer}>
-      <div style={style.imageContainer}>
-        <Img src={signup} alt="image-chat" styleName={style.image} />
+    <div className='page'>
+    <div className='signUpContainer'>
+      <div className='imageContainer'>
+        <Img src={signup} alt="image-chat" styleName='image' />
       </div>
         <SignUpForm />
     </div>

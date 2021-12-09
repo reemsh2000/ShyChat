@@ -2,13 +2,13 @@ import React from "react";
 import Img from "../../components/common/Img";
 import { VerifyForm } from "./VerifyForm";
 import signup from "../../util/images/signup.jpg";
-import style from "../signUp/style";
+import  "../signUp/style.css";
 
 const Verify: React.FC = () => (
-  <div style={style.page}>
-    <div style={style.signUpContainer}>
-      <div style={style.imageContainer}>
-        <Img src={signup} alt="image-chat" styleName={style.image} />
+  <div className='page'>
+    <div className='signUpContainer'>
+      <div className='imageContainer'>
+        <Img src={signup} alt="image-chat" styleName='image' />
       </div>
       <VerifyForm />
     </div>

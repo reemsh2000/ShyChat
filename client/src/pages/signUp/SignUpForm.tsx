@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Joi from "joi-browser";
 import { Input } from "../../components/common/Input";
-import style from "./style";
+import  "./style.css";
 import { schema } from "./schema";
 import http from "../../service/httpService";
 import { useDispatch } from "react-redux";
@@ -84,18 +84,18 @@ export const SignUpForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={style.FormContainer}>
+    <form onSubmit={handleSubmit} className='FormContainer'>
       <Input
         name="userName"
         label="User Name"
         value={account.userName}
         onChange={handleChange}
         type="text"
-        styleName={style.inputContainer}
-        labelStyle={style.labelStyle}
-        inputStyle={style.inputStyle}
+        styleName='inputContainer'
+        labelStyle='labelStyle'
+        inputStyle='inputStyle'
         error={errors.userName}
-        errorStyle={style.errorMessage}
+        errorStyle='errorMessage'
       />
       <Input
         name="phoneNumber"
@@ -103,11 +103,11 @@ export const SignUpForm: React.FC = () => {
         value={account.phoneNumber}
         onChange={handleChange}
         type="text"
-        styleName={style.inputContainer}
-        labelStyle={style.labelStyle}
-        inputStyle={style.inputStyle}
+        styleName='inputContainer'
+        labelStyle='labelStyle'
+        inputStyle='inputStyle'
         error={errors.phoneNumber}
-        errorStyle={style.errorMessage}
+        errorStyle='errorMessage'
       />
       <Input
         name="password"
@@ -115,11 +115,11 @@ export const SignUpForm: React.FC = () => {
         value={account.password}
         onChange={handleChange}
         type="password"
-        styleName={style.inputContainer}
-        labelStyle={style.labelStyle}
-        inputStyle={style.inputStyle}
+        styleName='inputContainer'
+        labelStyle='labelStyle'
+        inputStyle='inputStyle'
         error={errors.password}
-        errorStyle={style.errorMessage}
+        errorStyle='errorMessage'
       />
       <Input
         name="confirmPassword"
@@ -127,13 +127,13 @@ export const SignUpForm: React.FC = () => {
         value={account.confirmPassword}
         onChange={handleChange}
         type="password"
-        styleName={style.inputContainer}
-        labelStyle={style.labelStyle}
-        inputStyle={style.inputStyle}
+        styleName='inputContainer'
+        labelStyle='labelStyle'
+        inputStyle='inputStyle'
         error={errors.confirmPassword}
-        errorStyle={style.errorMessage}
+        errorStyle='errorMessage'
       />
-      <input value="Sign up" type="submit" style={style.submit} />
+      <input value="Sign up" type="submit" className='submit' />
       <p>
         <Link to="/">go to LOGIN</Link>
       </p>

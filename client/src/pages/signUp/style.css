@@ -1,0 +1,69 @@
+  .image{
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem 0 0 2rem;
+  }
+  .imageContainer {
+    width: 50%;
+    height: 85vh;
+  }
+  .signUpContainer {
+    background: #fff;
+    width: 75%;
+    height: 85vh;
+    display: flex;
+    border-radius: 2rem;
+    box-shadow: 1px 1px 10px 1px #6B6B6B;
+    align-items: center;
+  }
+  .FormContainer {
+    width: 50%;
+    height: 70vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+.inputContainer {
+    display: flex;
+    flex-flow: column;
+    width: 80%;
+  }
+  .labelStyle {
+    border-left: 4px solid #2DAE95;
+    padding-left: 0.3rem;
+    height: 1.5rem;
+  }
+  .inputStyle {
+    margin: 0.5rem 0;
+    height: 1.8rem;
+    outline: none;
+    padding-left: 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 0 0 0.3rem 1px #787878;
+  }
+  .errorMessage {
+    height: 1.5rem;
+    border-radius: 0.2rem;
+    background: #ffcece;
+    padding-left: 1rem;
+  }
+  .submit {
+    width: 25%;
+    height: 2rem;
+    border-radius: 1rem;
+    border: 2px solid #6B6B6B;
+    background: #2DAE95;
+    font-size: 1.2rem;
+    margin-bottom: -2rem;
+  }
+  .page{
+    background-color: rgb(45, 174,149);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

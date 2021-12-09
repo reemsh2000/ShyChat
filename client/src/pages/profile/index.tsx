@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../state";
-import style from "./style";
+import "./style.css";
 import previewFile from "../../util/previewFile";
 import { EditProfileSection } from "./editProfileSection";
 import Img from "../../components/common/Img";
@@ -27,7 +27,7 @@ export const EditProfile: React.FC = () => {
    })
   }
   return (
-    <div style={style.editProfileContainer}>
+    <div className='editProfileContainer'>
       <EditProfileSection
         name={name}
         bio={bio}
@@ -37,8 +37,8 @@ export const EditProfile: React.FC = () => {
         handleSubmit={handleSubmit}
         image={image}
       />
-      <div style={style.logoSection}>
-        <Img styleName={style.logoImage} alt="logo" src={logo} />
+      <div className='logoSection'>
+        <Img styleName='logoImage' alt="logo" src={logo} />
       </div>
     </div>
   );
