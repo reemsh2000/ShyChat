@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const axios = Axios.create({
-  baseURL: 'http://localhost:9000/', withCredentials: true,
+  baseURL: 'https://shychatapp.herokuapp.com', withCredentials: true,
 });
 const http = {
   get: axios.get,
