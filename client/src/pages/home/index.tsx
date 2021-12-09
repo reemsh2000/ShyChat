@@ -78,7 +78,6 @@ const Home = () => {
 
   useEffect(() => {
     socket.on("receive_message", (data: any) => {
-      console.log(data);
       const updateMessages: any = [...messagesList, data];
       setMessagesList(updateMessages);
     });
