@@ -32,7 +32,9 @@ The user will enter the site and will login or signup,Hi/She will be able to cha
 ------
 ## Technologies 💻:-
 **BackEnd**: Node JS & Express JS ,WebSocket .
+
 **FrontEnd**: React JS,WebSocket,typescript,tailwind,css.
+
 **Database**: PostgreSQL.
 
 -----------
