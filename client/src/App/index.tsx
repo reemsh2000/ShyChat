@@ -35,15 +35,16 @@ const App = () => {
       <div style={style.app}>
         <Router>
           <Switch>
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/verfiy" component={Verify} />
+            <Route  path="/signup" component={SignUp} />
+            <Route  path="/verfiy" component={Verify} />
             <Route exact path="/login" component={Login} />
-            <ProtectedRoute isLogged={isLoggedState} path="/">
-              <Home />
-            </ProtectedRoute>
             <ProtectedRoute isLogged={isLoggedState} path="/editprofile">
               <EditProfile />
             </ProtectedRoute>
+            <ProtectedRoute isLogged={isLoggedState} path="/">
+              <Home />
+            </ProtectedRoute>
+
             {/* <Route path="/notfound" component={Error} /> */}
             {/* <Redirect to="/Not-Found" /> */}
           </Switch>
