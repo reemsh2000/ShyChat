@@ -18,30 +18,6 @@ const socket = io('https://shychatapp.herokuapp.com', {
   withCredentials: true,
 });
 
-const useStyles = makeStyles({
-  scrollBar: {
-    display: "flex",
-    justifyContent: 'space-between',
-    flexDirection: "column" as "column",
-    width: '100%',
-    alignItems: 'flex-end',
-
-    '&::-webkit-scrollbar': {
-      width: '0.4em',
-      // display:'none'
-    },
-    '&::-webkit-scrollbar-track': {
-      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
-    },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: 'rgba(0,0,0,.1)',
-      outline: '1px solid slategrey'
-    },
-
-  },
-
-}
-);
 
 const Home = () => {
   const [currentMessage, setCurrentMessage] = useState("");
