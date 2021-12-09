@@ -33,7 +33,7 @@ export const EditProfileSection: React.FC<EditProfileSectionProps> = ({
         </nav>
         <div style={style.userInfoSection}>
       <div style={style.profileImgContainer} >
-      <img alt={`${name} profile`} src='https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png'style={style.profileImg}/>
+      <img alt={`${name} profile`} src={image} style={style.profileImg}/>
       <label htmlFor="User Image" style={style.imageInputLabel}><ModeEditOutlineIcon/></label>
       </div>
       <div style={style.userInformation}>
