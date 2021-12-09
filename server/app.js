@@ -37,12 +37,10 @@ io.on('connection', (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   socket.on('send_message', async (data) => {
-    console.log(data);
     const {
       userid, receiverId, content, messagetime,
     } = data;
     await createChat(userid, receiverId, socket);
-    console.log(socket.chatId)
     await addNewMessage(userid, content, messagetime, socket.chatId);
     socket.to(socket.chatId).emit('receive_message', data);
   });
@@ -55,6 +53,6 @@ io.on('connection', (socket) => {
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(join(__dirname, '..', 'client', 'build')));
-  app.all('*', (req, res) => res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html')));
+  // app.all('*', (req, res) => res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html')));
 }
 module.exports = { io, app, server };
