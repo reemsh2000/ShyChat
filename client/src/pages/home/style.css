@@ -1,0 +1,95 @@
+  .homeContainer {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .contactsSection{
+    background-color: #F8F9FA;
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .chat{
+    background-color: rgb(243, 243,243);
+    width: 70%;
+    height: 100vh;
+
+  }
+  .noChat {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo {
+    width: 30%;
+    height: auto;
+  }
+  .messages{
+    height: 80vh;
+    width: 100%;
+    background: #F8F9FA;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    }
+  .currentMessage {
+    height: 10vh;
+    width: 90%;
+    background: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .none{
+    display: none
+  }; 
+  .messageTyping {
+    height: 8vh;
+    width: 90%;
+    padding: 0.5rem;
+    outline: none;
+    border: 2px solid #f7f7f7;
+    border-radius: 1rem
+  }
+  .footer {
+    display:flex;
+  }
+  .sendBtn{
+    width: 10%;
+    font-size: 1.5rem;
+    border: none;
+    outline: none; 
+    color: rgb(0, 60, 87);
+    cursor: pointer;
+    align-self: center;
+  }
+  .yoursMessage{
+    margin:10px;
+    display:flex;
+    justify-content:flex-end;
+    flex-direction: column;
+    align-items:center;
+    align-self: flex-start;
+    position:relative;
+    
+  }
+  .mineMessage{
+    display:flex;
+    justify-content:flex-end;
+    margin:10px;
+    align-self: flex-end;
+    align-items:center;
+    flex-direction: column;
+  }
+
+  .userImage{
+   width:30px;
+   height:30px;
+   border-radius:50%;
+   margin-right:7px;
+  }

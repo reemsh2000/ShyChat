@@ -1,6 +1,6 @@
 import React from "react";
 import Cantact from "../../components/cantact";
-import style from "./style";
+import  "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "../../state";
@@ -16,7 +16,7 @@ interface ContactsSection {
   const dispatch = useDispatch();
   const { handleCurrentChat } = bindActionCreators(actionCreators, dispatch);
   return (
-    <div style={style.contactsSection}>
+    <div className='contactsSection'>
           <SearchAppBar />
       {contacts.length ? (
         contacts.map((item: any) => <Cantact    

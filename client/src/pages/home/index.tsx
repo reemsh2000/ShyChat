@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ContactsSection from "./ContactsSection";
-import style from "./style";
+import  "./style.css";
 import UserNav from "../../components/common/userNav";
 import Img from "../../components/common/Img";
 import logo from "../../util/images/logo.png";
@@ -119,23 +119,23 @@ const Home = () => {
   }, [currentChatId]);
   const classes = useStyles();
   return (
-    <div style={style.homeContainer}>
+    <div className='homeContainer'>
       <ContactsSection contacts={userContacts} currentChatId={currentChatId} />
       {currentChatId ? (
         //seperate it into  a new component
-        <div style={style.chat}>
+        <div className='chat'>
           <UserNav
             name={chatData?.name}
             imageLink={chatData?.photo}
             userId={currentChatId}
           />
 
-          <div style={style.messages}>
+          <div className='messages'>
             <ScrollableFeed className={classes.scrollBar}>
               {messagesList.length && messagesList.map((message: any, index) => (
-                <div key={index} style={message.userid === currentChatId ? style.yoursMessage : style.mineMessage}>
+                <div key={index} className={message.userid === currentChatId ? 'yoursMessage' : 'mineMessage'}>
                   <div className='reMessage'>
-                    {message.userid === currentChatId ? <Img src={chatData.photo} alt={`${chatData.name} photo`} styleName={style.userImage} /> : ''}
+                    {message.userid === currentChatId ? <Img src={chatData.photo} alt={`${chatData.name} photo`} styleName='userImage' /> : ''}
                     <p className={message.userid === currentChatId ? 'receivedMessage' : 'sentMessages'}>{message.content}</p>
                   </div>
                   <p className='message'>{message.messagetime}</p>
@@ -143,16 +143,16 @@ const Home = () => {
               ))}
             </ScrollableFeed>
           </div>
-          <div style={style.footer}>
+          <div className='footer'>
             <Input
               name="currentMessage"
               label="Message"
               type="text"
-              styleName={style.currentMessage}
+              styleName='currentMessage'
               value={currentMessage}
               onChange={handleChange}
-              labelStyle={style.none}
-              inputStyle={style.messageTyping}
+              labelStyle='none'
+              inputStyle='messageTyping'
               placeholder="Message..."
               autoComplete="off"
               onSend={(e:any)=>{
@@ -161,12 +161,12 @@ const Home = () => {
                   sendMessage()}
               }}
             />
-            <SendIcon onClick={() => sendMessage()} style={style.sendBtn} />
+            <SendIcon onClick={() => sendMessage()} className='sendBtn' />
           </div>
         </div>
       ) : (
-        <div style={style.noChat}>
-          <Img src={logo} alt="logo-Shy-chat" styleName={style.logo} />
+        <div className='noChat'>
+          <Img src={logo} alt="logo-Shy-chat" styleName='logo' />
         </div>
       )}
     </div>
