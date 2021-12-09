@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Joi from "joi-browser";
 import { Input } from "../../components/common/Input";
-import style from "../signUp/style";
+import  "../signUp/style.css";
 import { schema } from "./schema";
 import http from "../../service/httpService";
 import { useDispatch } from "react-redux";
@@ -80,18 +80,18 @@ export const VerifyForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={style.FormContainer}>
+    <form onSubmit={handleSubmit} className='FormContainer'>
       <Input
         name="phoneNumber"
         label="Phone Number"
         value={account.phoneNumber}
         onChange={handleChange}
         type="text"
-        styleName={style.inputContainer}
-        labelStyle={style.labelStyle}
-        inputStyle={style.inputStyle}
+         styleName='inputContainer'
+        labelStyle='labelStyle'
+        inputStyle='inputStyle'
         error={errors.phoneNumber}
-        errorStyle={style.errorMessage}
+        errorStyle='errorMessage'
       />
       <Input
         name="code"
@@ -99,13 +99,13 @@ export const VerifyForm: React.FC = () => {
         value={account.code}
         onChange={handleChange}
         type="text"
-        styleName={style.inputContainer}
-        labelStyle={style.labelStyle}
-        inputStyle={style.inputStyle}
+        styleName='inputContainer'
+        labelStyle='labelStyle'
+        inputStyle='inputStyle'
         error={errors.code}
-        errorStyle={style.errorMessage}
+        errorStyle='errorMessage'
       />
-      <input value="Confirm" type="submit" style={style.submit} />
+      <input value="Confirm" type="submit" className='submit'/>
       <p> <Link to="/">go to LOGIN</Link></p>
     </form>
   );

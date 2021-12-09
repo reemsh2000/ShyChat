@@ -6,11 +6,11 @@ interface InputProps {
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   type: string;
-  styleName?: React.CSSProperties;
-  labelStyle?: React.CSSProperties;
-  inputStyle?: React.CSSProperties;
+  styleName?: string;
+  labelStyle?: string;
+  inputStyle?: string;
   error?: any;
-  errorStyle?: React.CSSProperties;
+  errorStyle?: string;
   disabled?:boolean;
   placeholder?: string;
   autoComplete?: string;
@@ -34,21 +34,21 @@ export const Input: React.FC<InputProps> = ({
   onSend
 }) => {
   return (
-    <div style={styleName}>
-      <label htmlFor={name} style={labelStyle}>{label}</label>
+    <div className={styleName}>
+      <label htmlFor={name} className={labelStyle}>{label}</label>
       <input
         onChange={onChange}
         name={name}
         id={name}
         value={value}
         type={type}
-        style={inputStyle}
+        className={inputStyle}
         disabled={disabled}
         placeholder={placeholder}
         autoComplete={autoComplete}
         onKeyPress={onSend}
       />
-      {error && <div style={errorStyle}>{error}</div>}
+      {error && <div className={errorStyle}>{error}</div>}
     </div>
   );
 };

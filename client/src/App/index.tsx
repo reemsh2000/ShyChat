@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators, State } from '../state';
 import { theme } from '../util/customizeStyle';
-import style from './style';
+import './style.css';
 import { SignUp } from '../pages/signUp';
 import CustomizedSnackbars from '../service/ErrorAlert';
 import Login from '../pages/login';
@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={style.app}>
+      <div className='app'>
         <Router>
           <Switch>
             <Route  path="/signup" component={SignUp} />
