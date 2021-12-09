@@ -27,7 +27,7 @@ The user will enter the site and will login or signup,Hi/She will be able to cha
 
 ## Database schema: 
 
-![db](https://user-images.githubusercontent.com/71079908/142997002-c2680b2f-03dd-481d-90b9-bb575d742b31.png)
+![shyChatschema](https://user-images.githubusercontent.com/71079908/145465787-c2d58b85-ec63-4592-94d1-16dad9ba4dbb.png)
 
 ------
 ## Technologies 💻:-
