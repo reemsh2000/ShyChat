@@ -1,99 +1,113 @@
  .editProfileContainer {
-    color: #000;
-    display:flex;
-    justify-content: space-evenly;
-    width:100%;
-    margin:0 auto;
-    outline:none;
-  
-  }
-  .editProfileSection {
-    width:24%;
-    display:flex;
-    flex-direction: column;
-  }
-  .userInfoSection{
-    display:flex;
-     justify-content: space-evenly;
-     align-items: center;
-     flex-direction: column;
-     width:100%;
-     height:70vh;
-  }
-  .profileImgContainer{
-    display:flex;
-    justify-content: center;
-    padding:30px;
-    margin-top:60px
-  }
-  .profileImg{
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-  }
-  .divStyle{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    width: 100%;
-    flex-direction: column;
-  }
-  .labelStyle{
-    width:180px;
-    margin:15px 0;
-    color:#187189
-  }
-  .inputStyle{
-    background-color:#fff;
-    width:80%;
-    padding:10px;
-    outline:none;
-    border:none;
-    box-shadow: 1px 1px 2px 1px #787878;
-  }
-  .logoSection{
-    width:77%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column
-  }
-  .logoImage{
-   width:50%;
-  }
-  .imageInput{
-    display:none
-  }
-  .imageInputLabel{
-    height:60px;
-    width:20px;
-  }
-  .profileNav{
-    display:flex;
-    align-items: center ;
-    justify-content: flex-start;
-    background-color:#65BBD4;
-    width:100%;
-    height:13vh;
-    padding-left:18px;
-  }
-  .profileTitle{
-    padding-left:15px;
-  }
-  .userInformation{
-    display:flex;
-    align-items: center ;
-    justify-content: space-evenly;
-    flex-direction: column;
-    height:70vh;
-    width:85%;
-    margin-left:30px;
-  }
-  .updateButton{
-    margin-top:30px;
-    background-color:#65BBD4;
-    padding:10px 13px;
-    border:none;
-    border-radius:5px
-  }
+   color: #000;
+   display: flex;
+   justify-content: space-evenly;
+   width: 100%;
+   margin: 0 auto;
+   outline: none;
 
+ }
+
+ .editProfileSection {
+   width: 24%;
+   display: flex;
+   flex-direction: column;
+ }
+
+ .userInfoSection {
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+   flex-direction: column;
+   width: 100%;
+   height: 70vh;
+ }
+
+ .profileImgContainer {
+   display: flex;
+   justify-content: center;
+   padding: 30px;
+   margin-top: 60px
+ }
+
+ .profileImg {
+   width: 140px;
+   height: 140px;
+   border-radius: 50%;
+ }
+
+ .divStyle {
+   display: flex;
+   justify-content: space-evenly;
+   align-items: flex-start;
+   width: 100%;
+   flex-direction: column;
+ }
+
+ .labelStyle {
+   width: 180px;
+   margin: 15px 0;
+   color: #187189
+ }
+
+ .inputStyle {
+   background-color: #fff;
+   width: 80%;
+   padding: 10px;
+   outline: none;
+   border: none;
+   box-shadow: 1px 1px 2px 1px #787878;
+ }
+
+ .logoSection {
+   width: 77%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column
+ }
+
+ .logoImage {
+   width: 50%;
+ }
+
+ .imageInput {
+   display: none
+ }
+
+ .imageInputLabel {
+   height: 60px;
+   width: 20px;
+ }
+
+ .profileNav {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #65BBD4;
+   width: 100%;
+   height: 13vh;
+   padding-left: 18px;
+ }
+
+ .profileTitle {
+   padding-left: 15px;
+ }
+
+ .userInformation {
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+   flex-direction: column;
+   height: 70vh;
+   width: 85%;
+   margin-left: 30px;
+ }
+
+ .updateButton {
+   margin-top: 30px;
+   background-color: #65BBD4;
+   padding: 10px 13px;
+   border: none;
+   border-radius: 5px
+ }
