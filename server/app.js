@@ -14,7 +14,8 @@ const app = express();
 const router = require('./routes');
 
 const server = http.createServer(app);
-const io = new Server(9001, {
+const io = new Server(server, {
+  path: '/ws',
   cors: {
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],

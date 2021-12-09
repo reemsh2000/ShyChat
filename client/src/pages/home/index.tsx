@@ -14,7 +14,7 @@ import ScrollableFeed from 'react-scrollable-feed'
 import { makeStyles } from "@mui/styles";
 import './messages.css';
 
-const socket = io("wss://shychatapp.herokuapp.com");
+const socket = io("https://shychatapp.herokuapp.com/ws");
 
 const useStyles = makeStyles({
   scrollBar: {
