@@ -12,11 +12,11 @@ import { useHistory,Link } from "react-router-dom";
 export const VerifyForm: React.FC = () => {
   localStorage.setItem('loginStatus', '');
   const [account, setAccount] = useState({
-    phoneNumber: "",
+    email: "",
     code: "",
   });
   const [errors, setErrors] = useState({
-    phoneNumber: "",
+    email: "",
     code: "",
   });
   const history = useHistory();
@@ -82,15 +82,15 @@ export const VerifyForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className='FormContainer'>
       <Input
-        name="phoneNumber"
-        label="Phone Number"
-        value={account.phoneNumber}
+        name="email"
+        label="Email"
+        value={account.email}
         onChange={handleChange}
         type="text"
          styleName='inputContainer'
         labelStyle='labelStyle'
         inputStyle='inputStyle'
-        error={errors.phoneNumber}
+        error={errors.email}
         errorStyle='errorMessage'
       />
       <Input

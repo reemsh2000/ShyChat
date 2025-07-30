@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const {
   addNewParticipant, checkExistChat, createNewChat,
 } = require('../../database/queries');

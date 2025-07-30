@@ -118,7 +118,7 @@ const SearchAppBar: React.FC<SearchProps> = ({ }) => {
       </Box>
       {searchResults.map((user) => (
         id !== user['id'] &&
-        <Cantact key={user['phone']} name={user['name']} imageLink={user['photo']} phoneNumber={user['phone']} userId={user['id']} setId={() => {handleCurrentChat(user['id']);setSearchResults([]);setSearchInput('');}} />))}
+        <Cantact key={user['email']} name={user['name']} imageLink={user['photo']} email={user['email']} userId={user['id']} setId={() => {handleCurrentChat(user['id']);setSearchResults([]);setSearchInput('');}} />))}
     </>
   );
 }

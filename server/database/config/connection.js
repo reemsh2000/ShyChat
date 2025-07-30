@@ -2,7 +2,6 @@ require('env2')('.env');
 const { Pool } = require('pg');
 
 const { DATABASE_URL, TEST_DB_URL, DEV_DB_URL } = process.env;
-
 let dbUrl = '';
 switch (process.env.NODE_ENV) {
   case 'test':
@@ -20,7 +19,8 @@ switch (process.env.NODE_ENV) {
 
 const options = {
   connectionString: dbUrl,
-  ssl: { rejectUnauthorized: false },
+  ssl: false,
+  // ssl: { rejectUnauthorized: false },
 };
 
 module.exports = new Pool(options);

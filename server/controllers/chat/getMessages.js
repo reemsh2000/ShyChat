@@ -1,6 +1,7 @@
 const { getChatMessages } = require('../../database/queries');
 
 const getMessages = async (req, res) => {
+  console.log({ req: req.userObj });
   const { id } = req.userObj;
   const { receiverId } = req.body;
   try {

@@ -1,13 +1,13 @@
-const { checkPhoneQuery } = require('../../database/queries');
+const { checkEmailQuery } = require('../../database/queries');
 const { signUpSchema } = require('../utilities/serverSideValidation');
 
 const checkUserExist = async (req, res, next) => {
   try {
     const userObj = await signUpSchema.validateAsync(req.body);
-    const { phoneNumber } = userObj;
-    const { rowCount } = await checkPhoneQuery(phoneNumber);
+    const { email } = userObj;
+    const { rowCount } = await checkEmailQuery(email);
     if (rowCount) {
-      res.status(400).json({ message: 'error in phone or password', errorCode: 'AS_1001', details: null });
+      res.status(400).json({ message: 'error in Email or password', errorCode: 'AS_1001', details: null });
     }
     req.userObj = userObj;
     next();

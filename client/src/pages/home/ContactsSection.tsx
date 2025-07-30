@@ -26,7 +26,7 @@ const ContactsSection: React.FC<ContactsSection> = ({ contacts, currentChatId })
             key={item.id}
             name={item.name}
             imageLink={item.photo}
-            phoneNumber={item.phoneNumber}
+            email={item.email}
             current={item.id === currentChatId}
           />
           )

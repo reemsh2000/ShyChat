@@ -1,6 +1,6 @@
 import { actionTypes } from "../action-types";
 const initialState = { 
-    id: 0, phoneNumber: '',name:'',bio:'',photo:''
+    id: 0, email: '',name:'',bio:'',photo:''
 }
 const userInfromation = (state = initialState, action:any) => {
   switch (action.type) {

@@ -12,13 +12,13 @@ import { useHistory, Link } from "react-router-dom";
 export const SignUpForm: React.FC = () => {
   const [account, setAccount] = useState({
     userName: "",
-    phoneNumber: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({
     userName: "",
-    phoneNumber: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
@@ -98,15 +98,15 @@ export const SignUpForm: React.FC = () => {
         errorStyle='errorMessage'
       />
       <Input
-        name="phoneNumber"
-        label="Phone Number"
-        value={account.phoneNumber}
+        name="email"
+        label="Email"
+        value={account.email}
         onChange={handleChange}
         type="text"
         styleName='inputContainer'
         labelStyle='labelStyle'
         inputStyle='inputStyle'
-        error={errors.phoneNumber}
+        error={errors.email}
         errorStyle='errorMessage'
       />
       <Input

@@ -1,25 +1,25 @@
 const addNewUser = require('./addNewUser');
-const checkPhoneQuery = require('./checkPhoneQuery');
+const checkEmailQuery = require('./checkEmailQuery');
 const getPhotoById = require('./getUserById');
 const updateUserProfile = require('./updateUserProfile');
 const ApproveChange = require('./ApproveChange');
-const getIdByPhoneNumber = require('./getUserIdByPhoneNumber');
-const searchUsersByPhone = require('./searchUsersByPhone');
+const getIdByEmail = require('./getIdByEmail');
+const searchUsersByEmail = require('./searchUsersByEmail');
 const {
   addNewParticipant, checkExistChat, createNewChat, getUserConversations, getChatMessages,
 } = require('./chat');
 
 module.exports = {
   addNewUser,
-  checkPhoneQuery,
+  checkEmailQuery,
   getPhotoById,
   updateUserProfile,
   ApproveChange,
-  getIdByPhoneNumber,
+  getIdByEmail,
   addNewParticipant,
   checkExistChat,
   getUserConversations,
   createNewChat,
-  searchUsersByPhone,
+  searchUsersByEmail,
   getChatMessages,
 };

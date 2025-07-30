@@ -1,7 +1,7 @@
 import React from "react";
 import Img from "../../components/common/Img";
 import { LoginForm } from "./LoginForm";
-import signup from "../../util/images/signup.jpg";
+import login from "../../util/images/signup.jpg";
 import  "../signUp/style.css";
 const Login: React.FC = () => {
   return (

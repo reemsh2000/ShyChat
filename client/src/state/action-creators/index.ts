@@ -29,7 +29,7 @@ export const getUserData = (user: User): Function => {
   return (dispatch: Dispatch) => {
     dispatch(setUserData({
       id: user.id,
-      phoneNumber: user.phoneNumber,
+      email: user.email,
       name:user.name,
       photo:user.photo,
       bio:user.bio

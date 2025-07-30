@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 interface Props {
   name: string;
   imageLink: string;
-  phoneNumber: string;
+  email: string;
   key?: number;
   setId: React.MouseEventHandler<HTMLDivElement>;
   current?: boolean;
@@ -40,7 +40,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Cantact: React.FC<Props> = ({ name, imageLink, phoneNumber, setId, current }) => {
+const Cantact: React.FC<Props> = ({ name, imageLink, email, setId, current }) => {
   const classes = useStyles();
   const [color, setColor] = useState("#fff")
 useEffect(

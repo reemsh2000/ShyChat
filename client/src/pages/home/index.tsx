@@ -13,8 +13,8 @@ import ScrollableFeed from 'react-scrollable-feed'
 import "./style.css";
 import './messages.css';
 
-const socket = io('https://shychatapp.herokuapp.com', {
-  withCredentials: true,
+const socket = io('http://localhost:9000', {
+  withCredentials: false,
 });
 
 
@@ -25,7 +25,7 @@ const Home = () => {
 
   const [chatData, setChatData] = useState({
     name: "",
-    phone: "",
+    Email: "",
     photo: "",
   });
 

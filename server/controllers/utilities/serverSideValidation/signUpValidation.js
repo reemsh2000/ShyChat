@@ -8,12 +8,12 @@ const schema = Joi.object().keys({
       'string.min': ' user name at least must content 4 letters',
       'any.required': 'user name is required',
     }),
-  phoneNumber: Joi.string().min(8).required()
+  email: Joi.string().min(8).required()
     .messages({
-      'string.base': 'Phone Number must be a string',
-      'string.empty': 'Phone Number can not be empty!',
-      'string.min': ' Phone Number at least must content 8 letters',
-      'any.required': 'Phone Number is required',
+      'string.base': 'Email must be a string',
+      'string.empty': 'Email can not be empty!',
+      'string.min': ' Email at least must content 8 letters',
+      'any.required': 'Email is required',
     }),
   password: Joi.string().required().min(7)
     .regex(/^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*\d)(?=\S*[^\w\s])\S{8,30}$/)

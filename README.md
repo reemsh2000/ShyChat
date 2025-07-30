@@ -47,9 +47,11 @@ The user will enter the site and will login or signup,Hi/She will be able to cha
 ### Database Setup 📋
 * Make sure you have installed PostgreSQL and pgcli
 ```
+psql -U postgres
 CREATE DATABASE {database name};
 CREATE USER {user name} WITH superuser password {password}
 ALTER DATABASE {database name} OWNER TO {user name};
+psql postgresql://reem:reem2212@localhost:5432/chat (in new terminal )
 ```
 * Test DB:
  Do the same as before but make sure to change the names.

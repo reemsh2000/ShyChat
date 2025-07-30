@@ -1,9 +1,9 @@
-const { searchUsersByPhone } = require('../../database/queries');
+const { searchUsersByEmail } = require('../../database/queries');
 
-const searchUsersByPhonehandler = async (req, res, next) => {
-  const { phone } = req.params;
+const searchUsersByEmailhandler = async (req, res, next) => {
+  const { email } = req.params;
   try {
-    const { rows: users, rowCount } = await searchUsersByPhone(phone);
+    const { rows: users, rowCount } = await searchUsersByEmail(email);
     if (rowCount === 0) {
       res.status(404).json({ message: 'No users found' });
     }
@@ -13,4 +13,4 @@ const searchUsersByPhonehandler = async (req, res, next) => {
   }
 };
 
-module.exports = { searchUsersByPhonehandler };
+module.exports = { searchUsersByEmailhandler };

@@ -6,7 +6,7 @@ import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import { Input } from '../../components/common/Input';
 interface EditProfileSectionProps {
   name: string,
-  phoneNumber: string,
+  email: string,
   bio: string,
   handleBioChang?: React.ChangeEventHandler<HTMLInputElement>,
   changeHandler: React.ChangeEventHandler<HTMLInputElement>,
@@ -16,7 +16,7 @@ interface EditProfileSectionProps {
 
 export const EditProfileSection: React.FC<EditProfileSectionProps> = ({
   name,
-  phoneNumber,
+  email,
   bio,
   handleBioChang,
   changeHandler,
@@ -36,7 +36,7 @@ export const EditProfileSection: React.FC<EditProfileSectionProps> = ({
         </div>
         <div className='userInformation'>
           <Input name={name} value={name} type='text' label='Name' disabled={true} styleName='divStyle' labelStyle='labelStyle' inputStyle='inputStyle' />
-          <Input name={phoneNumber} value={phoneNumber} type='text' label='Phone Number' disabled={true} styleName='divStyle' labelStyle='labelStyle' inputStyle='inputStyle' />
+          <Input name={email} value={email} type='text' label='Email' disabled={true} styleName='divStyle' labelStyle='labelStyle' inputStyle='inputStyle' />
           <Input onChange={handleBioChang} name={bio} value={bio} type='text' label='Bio' styleName='divStyle' labelStyle='labelStyle' inputStyle='inputStyle' />
         </div>
         <div className='divStyle'>

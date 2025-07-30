@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS users,chat,chatparticipant,message CASCADE;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    phone VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
     password TEXT,
     photo TEXT DEFAULT 'https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png',
     bio TEXT DEFAULT '',

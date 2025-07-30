@@ -12,7 +12,7 @@ interface logoutAction {
 interface userDataAction {
     type: actionTypes.USERDATA,
     id: number,
-    phoneNumber: string
+    email: string
 }
 
 interface showError {

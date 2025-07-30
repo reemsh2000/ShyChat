@@ -2,7 +2,7 @@ import Joi from "joi-browser";
 
 export const schema = Joi.object()
   .keys({
-    phoneNumber: Joi.string().min(8).label("Phone Number").required(),
+    email: Joi.string().min(8).label("Email").required(),
     password: Joi.string()
       .required()
       .min(7)

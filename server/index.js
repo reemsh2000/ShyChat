@@ -8,9 +8,9 @@ const server = app.listen(app.get('port'), () => {
 
 const io = new Server(server, {
   cors: {
-    origin: 'https://shychatapp.herokuapp.com',
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
-    credentials: true,
+    credentials: false,
   },
 });
 

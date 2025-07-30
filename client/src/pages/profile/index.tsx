@@ -9,7 +9,7 @@ import logo from "../../util/images/logo.png";
 import http from "../../service/httpService";
 export const EditProfile: React.FC = () => {
   const userInfromation = useSelector((state: State) => state.userInfromation);
-  const { id, name, phoneNumber, photo, bio } = userInfromation;
+  const { id, name, email, photo, bio } = userInfromation;
   const [bioText, setBioText] = useState("");
   const [image, setImage] = useState(photo);
   const handleBioChang = (e: any) => {
@@ -31,7 +31,7 @@ export const EditProfile: React.FC = () => {
       <EditProfileSection
         name={name}
         bio={bio}
-        phoneNumber={phoneNumber}
+        email={email}
         handleBioChang={handleBioChang}
         changeHandler={changeHandler}
         handleSubmit={handleSubmit}
