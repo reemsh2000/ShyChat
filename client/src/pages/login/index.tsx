@@ -3,7 +3,6 @@ import Img from "../../components/common/Img";
 import { LoginForm } from "./LoginForm";
 import login from "../../util/images/auth-img.png";
 import { MessageSquareText } from "lucide-react";
-import "../signUp/style.css";
 const Login: React.FC = () => {
 	return (
 		<div className="flex flex-col md:flex-row md:items-start items-center bg-green-500 h-full w-full justify-center md:p-10 p-3">

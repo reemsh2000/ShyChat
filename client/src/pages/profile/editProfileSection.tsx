@@ -35,9 +35,9 @@ export const EditProfileSection: React.FC<EditProfileSectionProps> = ({
           <label htmlFor="User Image" className='imageInputLabel'><ModeEditOutlineIcon /></label>
         </div>
         <div className='userInformation'>
-          <Input name={name} value={name} type='text' label='Name' disabled={true} styleName='divStyle' labelStyle='labelStyle' inputStyle='inputStyle' />
-          <Input name={email} value={email} type='text' label='Email' disabled={true} styleName='divStyle' labelStyle='labelStyle' inputStyle='inputStyle' />
-          <Input onChange={handleBioChang} name={bio} value={bio} type='text' label='Bio' styleName='divStyle' labelStyle='labelStyle' inputStyle='inputStyle' />
+          <Input name={name} value={name} type='text' label='Name' disabled={true} styleName='divStyle' inputStyle='inputStyle' />
+          <Input name={email} value={email} type='text' label='Email' disabled={true} styleName='divStyle' inputStyle='inputStyle' />
+          <Input onChange={handleBioChang} name={bio} value={bio} type='text' label='Bio' styleName='divStyle' inputStyle='inputStyle' />
         </div>
         <div className='divStyle'>
           <input

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Joi from "joi-browser";
 import { Input } from "../../components/common/Input";
-import "../signUp/style.css";
 import { schema } from "./schema";
 import { handleErrorMessage } from "../../state/action-creators";
 import http from "../../service/httpService";
@@ -39,8 +38,9 @@ export const LoginForm: React.FC = () => {
 	};
 
 	const handleChange = ({ currentTarget: input }: React.FormEvent<HTMLInputElement>) => {
+    console.log({input,account,name:input.name,val:input.value})
 		const updateAccountState = { ...account };
-		//@ts-ignore
+		// @ts-ignore
 		updateAccountState[input.name] = input.value;
 		setAccount(updateAccountState);
 	};
@@ -76,8 +76,8 @@ export const LoginForm: React.FC = () => {
 
 	return (
 		<form onSubmit={handleSubmit} className="md:w-1/3 w-full ">
-			<Input placeholder="Enter Email" name="email" label="Email" value={account.email} onChange={handleChange} type="text" styleName="my-4" labelStyle="labelStyle" inputStyle="inputStyle" error={errors.email} errorStyle="errorMessage" />
-			<Input placeholder="Enter Password" name="password" label="Password" value={account.password} onChange={handleChange} type="password" styleName="mt-5" labelStyle="labelStyle" inputStyle="inputStyle" error={errors.password} errorStyle="errorMessage" />
+			<Input placeholder="Enter Email" name="email" label="Email" value={account.email} onChange={handleChange} type="text" styleName="my-4" error={errors.email} errorStyle="errorMessage" inputStyle='w-full'/>
+			<Input placeholder="Enter Password" name="password" label="Password" value={account.password} onChange={handleChange} type="password" styleName="mt-5" error={errors.password} errorStyle="errorMessage" inputStyle='w-full'/>
 			<button type="submit" className="w-full my-4 text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
 				Login
 			</button>

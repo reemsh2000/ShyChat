@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 require('env2')('.env');
 
 const express = require('express');
@@ -12,17 +13,23 @@ const http = require('http');
 const app = express();
 const router = require('./routes');
 
-const server = http.createServer(http);
+const server = http.createServer(app);
 
 app.set('port', process.env.PORT || 9000);
 app.disable('x-powered-by');
-app.use(
-  cors({
-    credentials: true,
-    methods: ['GET', 'POST'],
-    origin: 'http://localhost:3000',
-  }),
-);
+// CORS config — must come early
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // handle preflight
+app.set('port', process.env.PORT || 9000);
+app.disable('x-powered-by');
+
 app.use(compression());
 app.use(cookieParser());
 app.use(express.json());

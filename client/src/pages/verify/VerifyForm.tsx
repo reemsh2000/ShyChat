@@ -88,7 +88,6 @@ export const VerifyForm: React.FC = () => {
         onChange={handleChange}
         type="text"
          styleName='inputContainer'
-        labelStyle='labelStyle'
         inputStyle='inputStyle'
         error={errors.email}
         errorStyle='errorMessage'
@@ -100,7 +99,6 @@ export const VerifyForm: React.FC = () => {
         onChange={handleChange}
         type="text"
         styleName='inputContainer'
-        labelStyle='labelStyle'
         inputStyle='inputStyle'
         error={errors.code}
         errorStyle='errorMessage'
