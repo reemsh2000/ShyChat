@@ -5,7 +5,7 @@ interface Props {
 	imageLink: string;
 	email: string;
 	key?: number;
-	setId: React.MouseEventHandler<HTMLDivElement>;
+	setId?: React.MouseEventHandler<HTMLDivElement>;
 	current?: boolean;
 	userId?: number;
 }

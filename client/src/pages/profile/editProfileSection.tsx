@@ -30,7 +30,7 @@ export const EditProfileSection: React.FC<EditProfileSectionProps> = ({ name, em
 					<Input name={name} value={name} type="text" label="Name" styleName="my-4" disabled={true} inputStyle="w-full" />
 					<Input name={email} value={email} type="text" label="Email" disabled={true} styleName="my-4" inputStyle="w-full" />
 					<label htmlFor="bio" className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
-						Bio
+						About
 					</label>
 					<textarea
 						placeholder="Enter your bio here...."
