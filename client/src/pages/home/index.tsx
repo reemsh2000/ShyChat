@@ -102,7 +102,7 @@ const Home = () => {
 
 	return (
 		<div className="flex w-full h-full">
-			<Sidebar className="w-20 border-green-300 border-2" />
+			{/* <Sidebar/> */}
 			<ContactsSection contacts={userContacts} currentChatId={currentChatId} className="w-1/4" />
 			<div className="w-3/4 ">
 				{currentChatId ? (
@@ -111,7 +111,7 @@ const Home = () => {
 						<UserNav name={chatData?.name} imageLink={chatData?.photo} userId={currentChatId} />
 
 						<div className="messages w-full h-5/6 p-2">
-							<div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow  h-full overflow-auto ">
+							<div className="bg-gradient-to-r from-green-500 to-teal-400 rounded-lg shadow h-full overflow-auto">
 								{Array.isArray(messagesList) &&
 									messagesList.length > 0 &&
 									messagesList.map((message: any, index) => (
@@ -161,8 +161,12 @@ const Home = () => {
 					</div>
 				) : (
 					//  no char
-					<div className="flex justify-center items-center w-full h-full">
-						<Img src={logo} alt="logo-Shy-chat" styleName="logo" />
+					<div className="flex flex-col items-center justify-center h-full text-center text-gray-500 dark:text-gray-400 px-6 shadow-sm">
+						<svg xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 mb-4 text-gray-400 dark:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7 8h10M7 12h6m-6 4h10M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+						</svg>
+						<h2 className="text-xl font-semibold mb-2">No Chat Selected</h2>
+						<p className="text-sm">Please select a chat from the list to start messaging.</p>
 					</div>
 				)}
 			</div>

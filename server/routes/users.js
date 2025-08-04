@@ -15,6 +15,7 @@ router.get('/search/:email', searchUsersByEmailhandler);
 router.use(checkAuth);
 router.get('/contacts', getContacts);
 router.put('/editprofile', editProfile);
+// router.put('/profile', editProfile);
 router.post('/messages', getMessages);
 
 module.exports = router;
