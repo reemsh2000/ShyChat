@@ -1,17 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import ContactsSection from "./ContactsSection";
 import UserNav from "../../components/common/userNav";
-import Img from "../../components/common/Img";
-import logo from "../../util/images/logo.png";
-import { useSelector } from "react-redux";
-import { State } from "../../state";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators, State } from "../../state";
 import http from "../../service/httpService";
-import { Input } from "../../components/common/Input";
 import { io } from "socket.io-client";
 import SendIcon from "@mui/icons-material/Send";
-import ScrollableFeed from "react-scrollable-feed";
-import Sidebar from "../../components/Sidebar";
-// import login from "../../util/images/";
+import { ChevronLeft } from "lucide-react";
+import "./style.css";
+import { bindActionCreators } from "redux";
 
 const socket = io("http://localhost:9000", {
 	withCredentials: false,
@@ -101,16 +98,18 @@ const Home = () => {
 	}, [currentChatId]);
 
 	return (
-		<div className="flex w-full h-full">
+		<div className="flex w-full md:h-full h-5/6 max-h-full home-height">
 			{/* <Sidebar/> */}
-			<ContactsSection contacts={userContacts} currentChatId={currentChatId} className="w-1/4" />
-			<div className="w-3/4 ">
+			<ContactsSection contacts={userContacts} currentChatId={currentChatId} className={`py-2 md:w-1/3 ${currentChatId ? "hidden md:block" : "w-full"}`} />
+			<div className={`md:w-3/4 ${currentChatId ? "w-full" : "hidden"} md:w-full md:block `}>
 				{currentChatId ? (
 					//seperate it into  a new component
-					<div className="chat h-full">
-						<UserNav name={chatData?.name} imageLink={chatData?.photo} userId={currentChatId} />
+					<div className="chat h-full ">
+						<div className="flex items-center">
+							<UserNav name={chatData?.name} imageLink={chatData?.photo} userId={currentChatId} />
+						</div>
 
-						<div className="messages w-full h-5/6 p-2">
+						<div className="messages w-full h-4/5 p-2">
 							<div className="bg-gradient-to-r from-green-500 to-teal-400 rounded-lg shadow h-full overflow-auto">
 								{Array.isArray(messagesList) &&
 									messagesList.length > 0 &&

@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
 import SearchAppBar from "../../components/Search";
-import ScrollableFeed from "react-scrollable-feed";
 
 interface ContactsSection {
 	contacts: any[];
@@ -19,14 +18,13 @@ const ContactsSection: React.FC<ContactsSection> = ({ contacts, currentChatId, c
 	return (
 		<div className={className}>
 			<SearchAppBar setSearch={setSearch} />
-			{search}
-			{!search&&<ScrollableFeed className="scrollBar">
+			{!search&&<div className="overflow-auto">
 				{contacts.length ? (
 					contacts.map((item: any) => <Cantact setId={() => handleCurrentChat(item.id)} key={item.id} name={item.name} imageLink={item.photo} email={item.email} current={item.id === currentChatId} />)
 				) : (
 					<p className="font-bold text-sm text-gray-500 p-6"> There is no contacts,Search To find Your friends ! </p>
 				)}
-			</ScrollableFeed>}
+			</div>}
 		</div>
 	);
 };

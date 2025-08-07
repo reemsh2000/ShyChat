@@ -13,49 +13,12 @@ import { actionCreators, State } from "../state";
 import { bindActionCreators } from "redux";
 import { CoPresentOutlined } from "@mui/icons-material";
 import Cantact from "./cantact";
+import { User } from "../state/action-types";
 
 interface SearchProps {
 	setSearch:Function
 }
 
-const Search = styled("div")(({ theme }) => ({
-	position: "relative",
-	borderRadius: theme.shape.borderRadius,
-	backgroundColor: alpha(theme.palette.common.white, 0.15),
-	"&:hover": {
-		backgroundColor: alpha(theme.palette.common.white, 0.25),
-	},
-	marginLeft: 0,
-	width: "100%",
-	[theme.breakpoints.up("sm")]: {
-		marginLeft: theme.spacing(1),
-		width: "auto",
-	},
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-	padding: theme.spacing(0, 2),
-	height: "100%",
-	position: "absolute",
-	pointerEvents: "none",
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-	color: "inherit",
-	"& .MuiInputBase-input": {
-		padding: theme.spacing(1, 1, 1, 0),
-		// vertical padding + font size from searchIcon
-		paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-		transition: theme.transitions.create("width"),
-		width: "100%",
-		[theme.breakpoints.up("sm")]: {
-			width: "100%",
-		},
-	},
-}));
 
 const SearchAppBar: React.FC<SearchProps> = ({setSearch}) => {
 	const [searchInput, setSearchInput] = useState("");
@@ -68,7 +31,8 @@ const SearchAppBar: React.FC<SearchProps> = ({setSearch}) => {
 		if (searchInput) {
 			try {
 				const users = await http.get("user/search/" + searchInput);
-				setSearchResults(users.data);
+				const results = users?.data?.filter((user:User)=>id !== user["id"])
+				setSearchResults(results);
 			} catch (ex) {
 				setSearchResults([]);
 			}
@@ -81,7 +45,7 @@ const SearchAppBar: React.FC<SearchProps> = ({setSearch}) => {
 		<>
 			<div className="">
 				<div className="font-bold text-2xl py-5 px-2 text-green-500">Chats</div>
-				<form className="max-w-sm mx-auto p-2">
+				<form className="w-full mx-auto p-2">
 					<label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
 						Search
 					</label>
@@ -89,7 +53,7 @@ const SearchAppBar: React.FC<SearchProps> = ({setSearch}) => {
 						<input
 							type="search"
 							id="default-search"
-							className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+							className="block w-full p-4 pl-10 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
 							placeholder="Search here..."
 							required
 							onChange={(e) => {
@@ -98,7 +62,7 @@ const SearchAppBar: React.FC<SearchProps> = ({setSearch}) => {
 								searchRequest();
 							}}
 						/>
-						<div className="absolute inset-y-0 right-4 flex items-center ps-3 pointer-events-none">
+						<div className="absolute inset-y-0 left-4 flex items-center ps-3 pointer-events-none">
 							<svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
 								<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
 							</svg>
@@ -108,7 +72,7 @@ const SearchAppBar: React.FC<SearchProps> = ({setSearch}) => {
 			</div>
 			{searchResults.map(
 				(user) =>
-					id !== user["id"]&& !!searchInput && (
+					 !!searchInput && (
 						<Cantact
 							key={user["email"]}
 							name={user["name"]}
@@ -123,6 +87,9 @@ const SearchAppBar: React.FC<SearchProps> = ({setSearch}) => {
 						/>
 					)
 			)}
+			{
+				!!searchInput &&searchResults.length==0 && <p className="text-gray-500 p-6">No Data Available</p>
+			}
 		</>
 	);
 };

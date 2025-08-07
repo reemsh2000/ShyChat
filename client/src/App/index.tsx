@@ -35,15 +35,18 @@ const App = () => {
 						<Route path="/verfiy" component={Verify} />
 						<Route exact path="/login" component={Login} />
 						<ProtectedRoute isLogged={isLoggedState} path="/editprofile">
-							<Sidebar />
-
-							<EditProfile />
+							<div className="flex flex-col-reverse md:flex-row w-full h-full">
+								<Sidebar />
+								<EditProfile />
+							</div>
 						</ProtectedRoute>
 						<ProtectedRoute isLogged={isLoggedState} path="/">
-							<Sidebar />
-
-							<Home />
+							<div className="flex flex-col-reverse md:flex-row w-full h-full">
+								<Sidebar />
+								<Home />
+							</div>
 						</ProtectedRoute>
+						
 
 						{/* <Route path="/notfound" component={Error} /> */}
 						{/* <Redirect to="/Not-Found" /> */}

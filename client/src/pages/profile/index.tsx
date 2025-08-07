@@ -18,6 +18,7 @@ export const EditProfile: React.FC = () => {
 	const [isProfileChanged, setProfileChanged] = useState(false);
 	const [image, setImage] = useState(userInfromation?.photo);
 	const handleBioChang = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		console.log({bioText})
 		setBioText(e.target.value);
 	};
 	const changeHandler = (e: any) => {
@@ -50,7 +51,7 @@ export const EditProfile: React.FC = () => {
 	console.log({ userInfromation });
 	return (
 		<div className="flex w-full h-full">
-			<div className="w-full md:w-1/3 pt-4 px-8 border-r-2 border-gray-200">
+			<div className="w-full md:w-1/3 pt-4 px-8 border-r-2 border-gray-200 hidden md:block">
 				<h2 className="font-semibold my-5 text-green-500 text-lg">Setting</h2>
 				<Cantact name={name} imageLink={image} email={email} />
 				<div className="my-5">

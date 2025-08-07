@@ -1,76 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Box from "@mui/material/Box";
-import { makeStyles } from "@mui/styles";
-
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../../state";
+import { ChevronLeft } from "lucide-react";
 interface UserNavProps {
-  name: string;
-  imageLink: string;
-  userId: number;
-  key?: number;
+	name: string;
+	imageLink: string;
+	userId: number;
+	key?: number;
 }
-const useStyles = makeStyles({
-  imageContainer: {
-    width: "8vh",
-    height: "8vh",
-    borderRadius: "50%",
-    marginRight: "1rem",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    borderRadius: "50%",
-  },
-  textContainer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-  },
-  BoxContainer: {
-    display: "flex",
-  },
-  contactName: {
-    margin: "0",
-    padding: "0",
-  },
-  contactsSection: {
-    width: "100%",
-  },
-});
 
-const UserNav: React.FC<UserNavProps> = ({
-  name,
-  imageLink,
-  userId,
-}) => {
-  const classes = useStyles();
-  const getChat = (id: number) => {};
-  return (
-      <Box
-        sx={{
-          width: "100%",
-          height:'10vh',
-          backgroundColor: "#fff",
-          display: "flex",
-          padding: "10px",
-          alignItems: "center",
-          border: "2px solid #f6f6f6",
-          boxSizing: "border-box",
-        }}
-      >
-        <div className={classes.imageContainer}>
-          <img
-            src={imageLink}
-            alt={`${name} photo`}
-            className={classes.image}
-          />
-        </div>
-        <div className={classes.textContainer}>
-          <h3 className={classes.contactName}>{name}</h3>
-        </div>
-      </Box>
-  );
+
+const UserNav: React.FC<UserNavProps> = ({ name, imageLink, userId }) => {
+	const dispatch = useDispatch();
+
+	const { handleCurrentChat } = bindActionCreators(actionCreators, dispatch);
+
+	const getChat = (id: number) => {};
+	return (
+		<div className="flex items-center w-full mx-2  p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+			<ChevronLeft onClick={() => handleCurrentChat(0)} />
+			<div className="flex items-center ">
+				<div className="radious">
+					<img src={imageLink} alt="user's image" loading="lazy" className="w-16 rounded-full mx-2" />
+				</div>
+				<div className="flex flex-col mx-3">
+					<h3 className="font-bold text-l text-green-500">{name}</h3>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default UserNav;

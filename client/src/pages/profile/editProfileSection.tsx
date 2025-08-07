@@ -15,11 +15,7 @@ interface EditProfileSectionProps {
 export const EditProfileSection: React.FC<EditProfileSectionProps> = ({ name, email, bio, handleBioChang, changeHandler, handleSubmit, image }) => {
 	return (
 		<div className="w-full md:w-2/3 h-full">
-			{/* <nav className=''>
-        <ArrowBackIcon />
-        <h3 className=''>Profile</h3>
-      </nav> */}
-			<div className="flex justify-evenly items-center flex-col w-3/4 h-44 py-20">
+			<div className="flex justify-evenly items-center flex-col md:w-3/4 w-full h-44 py-20">
 				<div className="flex p-15">
 					<img alt={`${name} profile`} src={image || "https://i.pravatar.cc/40?img=2"} className="w-32 h-32 rounded-full" />
 					<label htmlFor="User Image" className="h-20 w-15">

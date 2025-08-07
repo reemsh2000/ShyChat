@@ -12,6 +12,7 @@ interface Props {
 
 const Cantact: React.FC<Props> = ({ name, imageLink, email, setId, current }) => {
 	const [color, setColor] = useState("#fff");
+
 	useEffect(() => {
 		if (current) {
 			setColor("#3E9D8A");
@@ -21,7 +22,7 @@ const Cantact: React.FC<Props> = ({ name, imageLink, email, setId, current }) =>
 	}, [current]);
 
 	return (
-		<div className=" max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+		<div className= "mx-2 md:max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
 			<div onClick={setId} className="flex items-center ">
 				<div className="radious">
 					<img src={imageLink} alt="user's image" loading="lazy" className="w-16 rounded-full mx-2" />
